@@ -1,0 +1,15 @@
+{
+  "checks": [
+    "PNG served byte-for-byte with image/png and nosniff",
+    "owner: native map aspect, full view and 16 registered vehicles",
+    "owner: click, single cabin, stable driver, movement, pause, day/night and mobile fit",
+    "cloud: native map aspect, full view and 16 registered vehicles",
+    "user: native map aspect, full view and 16 registered vehicles",
+    "user: click, single cabin, stable driver, movement, pause, day/night and mobile fit",
+    "curator: native map aspect, full view and 16 registered vehicles",
+    "identical vehicle coordinates in all four roles at shared paused time",
+    "no JavaScript page errors"
+  ],
+  "errors": [],
+  "fixture": "16 synthetic API vehicles in isolated browser contexts; no registrations persisted"
+}

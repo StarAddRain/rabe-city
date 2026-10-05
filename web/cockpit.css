@@ -1,0 +1,49 @@
+/* Single cabin, anchored to the selected moving vehicle. */
+.cockpit-tether{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;overflow:visible}
+#cockpit-cone{fill:#fafcf51a;stroke:#ffffef88;stroke-width:1}
+#cockpit-line{fill:none;stroke:#fffceb;stroke-width:1.5;stroke-dasharray:5 5}
+#cockpit-anchor{fill:#fffceb;stroke:#78a89b;stroke-width:2}
+.cockpit-view{position:fixed;left:0;top:0;width:640px;z-index:3;border:2px solid #fffdf0;border-radius:17px;background:#263d35;box-shadow:0 18px 60px #19332b42;overflow:hidden;--cabin-accent:#5e9993;--screen-left:57.5%;--screen-top:46%;--screen-width:22%;--screen-height:21%;will-change:transform;animation:cabin-enter .65s cubic-bezier(.16,1,.3,1)}
+.cockpit-view[data-role=owner]{--cabin-accent:#d88a3d}
+.cockpit-header{height:44px;padding:0 12px;display:flex;justify-content:space-between;align-items:center;color:#f8f7ed;background:#263a33}
+.cockpit-header>div{display:flex;align-items:center;gap:10px}
+.cockpit-header strong{font-size:16px;letter-spacing:1px;font-weight:500}
+.cockpit-tag{font-size:9px;color:#fff7e6;background:var(--cabin-accent);border-radius:7px;padding:6px 9px}
+.cockpit-header button{color:#eef4e8;border:1px solid #ffffff26;border-radius:6px;background:#ffffff0b;padding:6px 9px;font-size:10px;white-space:nowrap}
+.cockpit-header #cockpit-close{font-size:19px;line-height:20px;width:27px;padding:0}
+.cockpit-header #cockpit-follow[aria-pressed=true]{background:#3f7866;border-color:#609681}
+.cockpit-scene{position:relative;aspect-ratio:16/9;overflow:hidden;background:#b9cdb5}
+#cockpit-art{width:100%;height:100%;object-fit:cover;display:block;user-select:none}
+.cockpit-road-flow{position:absolute;inset:0;pointer-events:none;background:linear-gradient(125deg,transparent 32%,#fffcdf0b 43%,transparent 55%);background-size:210% 100%;mix-blend-mode:screen}
+.cockpit-screen{position:absolute;left:var(--screen-left);top:var(--screen-top);width:var(--screen-width);height:var(--screen-height);border-radius:3px;background:#edf1df;display:flex;flex-direction:column;justify-content:flex-end;align-items:stretch;color:#435c50;padding:3px;text-align:left;overflow:hidden;container-type:inline-size;transform:rotate(2deg);box-shadow:0 0 0 1px #ffffff88,0 1px 5px #23382d35}
+.screen-map{position:absolute;inset:0;background:#dce8cb;overflow:hidden}
+.screen-map:before,.screen-map:after{content:"";position:absolute;background:#a9c59a;opacity:.8}
+.screen-map:before{width:18%;height:150%;left:29%;top:-24%;transform:rotate(35deg)}
+.screen-map:after{width:12%;height:150%;right:19%;top:-22%;transform:rotate(-32deg)}
+.screen-road{position:absolute;display:block;background:#faf8e8;box-shadow:0 0 0 1px #b9c7a7aa}
+.screen-road-a{width:12%;height:145%;left:53%;top:-18%;transform:rotate(52deg)}
+.screen-road-b{width:145%;height:11%;left:-20%;top:47%;transform:rotate(-14deg)}
+.screen-road-c{width:8%;height:145%;left:11%;top:-20%;transform:rotate(-42deg)}
+.screen-route{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.screen-route path{fill:none;stroke:#e87946;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1px 1px #fff8)}
+.screen-route circle{fill:#fffdf0;stroke:#dd7041;stroke-width:2}
+.screen-pin{position:absolute;width:8%;aspect-ratio:1;border-radius:100% 100% 100% 0;background:#e87946;right:14%;top:13%;transform:rotate(-45deg);box-shadow:0 1px 3px #384b3348}
+.screen-map-head{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;font-size:clamp(5px,4.6cqw,10px);color:#46634c;line-height:1;white-space:nowrap;text-shadow:0 1px #fff9}
+.screen-map-head b{font-size:clamp(4px,3.8cqw,8px);font-weight:600;color:#3f8b62;background:#eef7e8cc;border-radius:4px;padding:2px 3px}
+#cockpit-status{position:relative;z-index:1;font-size:clamp(6px,5.6cqw,12px);font-weight:600;line-height:1.25;max-width:100%;white-space:normal;overflow-wrap:anywhere;text-shadow:0 1px #fff9}
+#cockpit-map-share{position:relative;z-index:1;font-size:clamp(5px,4.1cqw,9px);color:#66806b;line-height:1.15;white-space:nowrap;text-shadow:0 1px #fff9}
+.cockpit-view[data-phase=error] .cockpit-screen{color:#a85c4c}.cockpit-view[data-phase=success] .cockpit-screen{color:#3c8063}
+.cockpit-driver-tag{position:absolute;left:13px;bottom:12px;border:1px solid #ffffff44;padding:6px 10px;background:#233e35bf;border-radius:8px;color:#f1f2e6;font-size:10px;backdrop-filter:blur(6px)}
+.cockpit-driver-tag i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--cabin-accent);margin-right:3px}
+.cockpit-footer{height:31px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;gap:12px;font-size:9px;color:#d1ded1;background:#2b4239}
+#cockpit-motion{white-space:nowrap;color:#eceddb}#cockpit-data-hint{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;text-align:right}
+.cockpit-active .map-caption{opacity:0}.map-caption{transition:opacity .25s}
+.cockpit-active .bottom-dock{height:118px}.cockpit-active .dock-content{height:71px;padding:8px 13px}.cockpit-active .message-card{padding:6px 9px}.cockpit-active .message-card b{margin:5px 0}.cockpit-active .map-label{bottom:188px}.cockpit-active .legend{bottom:159px}
+.cockpit-active .pipeline{bottom:155px}
+.cockpit-view[data-paused=true] .cockpit-road-flow{animation-play-state:paused}
+@keyframes cabin-enter{from{opacity:0;scale:.91;translate:0 24px}to{opacity:1;scale:1;translate:0 0}}
+@media(max-width:900px){.cockpit-header{height:37px;padding:0 8px}.cockpit-header>div{gap:6px}.cockpit-header strong{font-size:13px}.cockpit-tag{font-size:8px;padding:5px 6px}.cockpit-header button{font-size:9px;padding:5px 6px}.cockpit-footer{height:27px;padding:0 8px;font-size:8px}.cockpit-driver-tag{font-size:8px;left:8px;bottom:8px;padding:5px}}
+@media(max-width:600px){.cockpit-active .stats{display:none}.cockpit-view{border-radius:12px}.cockpit-header{height:34px}.cockpit-footer{height:25px}.cockpit-active .map-label,.cockpit-active .legend{display:none}.cockpit-active .bottom-dock{height:150px}.cockpit-active .dock-content{height:104px}.cockpit-active .map-tools{top:95px}.cockpit-active .pipeline{bottom:auto;top:410px}.cockpit-screen{padding:2px}.cockpit-header strong{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.cockpit-view{animation:none}.map-caption{transition:none}}
+
+@media(max-width:600px){.cockpit-view,.cockpit-tether{position:absolute}.cockpit-tether{height:450px}.cockpit-active #city{position:absolute}}
