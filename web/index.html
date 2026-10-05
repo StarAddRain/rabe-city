@@ -43,7 +43,8 @@
 <label class="field-label" for="new-name">新车辆名称</label><input id="new-name" value="新港车辆" maxlength="60">
 <label class="field-label" for="new-role">车辆角色</label><select id="new-role"><option value="owner">数据拥有者 · A 端生成密钥</option><option value="user">数据用户 · C 端生成密钥</option></select>
 <label class="field-label" for="new-attrs">属性名称（逗号分隔）</label><input id="new-attrs" placeholder="例如：特斯拉,新能源,授权通行" maxlength="3050" spellcheck="false">
-<button class="primary" id="register-button">注册新车辆</button>
+<button class="primary" id="register-button" disabled aria-describedby="register-status">注册新车辆</button>
+<p id="register-status" class="hint left" role="status">正在读取 D 端状态…</p>
 <div class="version-info" id="registration-info">等待 D 就绪</div>
 <div class="action-note"><span class="note-icon">⊘</span><p>注销当前车辆：更新聚合公钥及辅助项，并停止该身份的在线访问。已获得的明文不能收回。</p></div>
 <button class="danger" id="deregister-button">注销当前车辆</button><button class="secondary" id="rejoin-button">让当前车辆重新加入</button><div id="registration-jobs" class="registration-jobs"></div>

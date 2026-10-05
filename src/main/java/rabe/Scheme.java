@@ -23,6 +23,10 @@ public final class Scheme {
   private final SecureRandom random = new SecureRandom();
 
   public Scheme(String parameters, int slots, int universe) {
+    this(parameters, slots, universe, message -> {});
+  }
+
+  public Scheme(String parameters, int slots, int universe, java.util.function.Consumer<String> progress) {
     pairing = PairingFactory.getPairing(parameters);
     if (!pairing.isSymmetric()) throw new IllegalArgumentException("symmetric pairing required");
     p = pairing.getZr().getOrder();
@@ -40,7 +44,7 @@ public final class Scheme {
     K = new Element[n];
     E = new Element[n];
     U = new Element[n][u];
-    W = new byte[n][n][u][];
+    progress.accept("生成基础参数");
     BigInteger[][] us = new BigInteger[n][u];
     BigInteger[] ts = new BigInteger[n];
     ElementPowPreProcessing gp = g.getElementPowPreProcessing();
@@ -55,12 +59,13 @@ public final class Scheme {
         U[i][a] = gp.pow(us[i][a]).getImmutable();
       }
     }
-    for (int i = 0; i < n; i++) {
-      ElementPowPreProcessing ap = A[i].getElementPowPreProcessing();
-      for (int j = 0; j < n; j++)
-        if (i != j) for (int a = 0; a < u; a++) W[i][j][a] = ap.pow(us[j][a]).toBytes();
-      if ((i + 1) % 10 == 0) System.out.println("Setup W slots " + (i + 1) + "/" + n);
-    }
+    int workers = SetupCrossTerms.workers(n);
+    progress.accept("准备交叉项预计算表（" + workers + " 个计算线程）");
+    W = SetupCrossTerms.generate(g, p, ts, us, workers, completed -> {
+      String status = "交叉项 " + completed + "/" + n + "（" + (completed * 100 / n) + "%）";
+      progress.accept(status);
+      if (completed % 10 == 0 || completed == n) System.out.println("Setup W slots " + completed + "/" + n);
+    });
     // Setup exponents are not retained by the CRS object.
   }
   /** Rehydrate public CRS and optionally the curator-only W backing table. No secret exponents. */

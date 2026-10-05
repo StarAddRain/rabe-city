@@ -67,7 +67,9 @@ public final class Curator {
         c = Wire.read(cp);
         s = Wire.context(c, params, Wire.readCross(wp, n, universe));
       } else {
-        s = new Scheme(params.toString(), n, universe);
+        final String layer = "第 " + k + " 层（" + n + " 槽位）";
+        s = new Scheme(params.toString(), n, universe, status -> phase = layer + " · " + status);
+        phase = layer + " · 保存公共参数";
         c = Wire.context(s, Json.str(deployment, "id") + ":" + k);
         Wire.writeCross(wp, s);
         Wire.save(cp, c);
