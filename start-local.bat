@@ -1,7 +1,7 @@
 @echo off
 cd /d "%~dp0"
 if not exist config\local\curator.properties (
- java -jar dist\rabe-city.jar prepare config/local http://127.0.0.1:8080 16 8 http://127.0.0.1:8083
+ java -jar dist\rabe-city.jar prepare config/local http://127.0.0.1:8080 32 50 http://127.0.0.1:8083
  if errorlevel 1 (pause & exit /b 1)
 )
 for %%R in (curator cloud owner user) do start "RABE %%R" cmd /k "java -Xmx2g -jar dist\rabe-city.jar config\local\%%R.properties"

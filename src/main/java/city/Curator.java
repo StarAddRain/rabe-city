@@ -19,7 +19,7 @@ public final class Curator {
   public Curator(Properties p, Path params) throws Exception {
     this.params = params;
     data = Paths.get(p.getProperty("data"));
-    int n = Integer.parseInt(p.getProperty("vehicles", "128"));
+    int n = Integer.parseInt(p.getProperty("vehicles", "32"));
     int cap = 1;
     while (cap < n) cap *= 2;
     capacity = cap;
