@@ -32,7 +32,7 @@
 <div class="attribute-title">已注册属性 <span id="attribute-count"></span></div><div id="attributes" class="attribute-list"></div>
 <div class="tabs" role="tablist"><button class="active" data-tab="share">数据共享</button><button data-tab="revoke">动态撤销</button><button data-tab="trace">泄露追踪</button><button data-tab="registry" class="hidden">注册 / 注销</button></div>
 <section id="tab-share" class="tab-pane">
-<div id="owner-form"><label class="field-label" for="message-text">加密文字 <span>仅在 A 端处理明文</span></label><textarea id="message-text" rows="3" maxlength="4000">新港路口路况：东向车道正在施工，请授权车辆减速绕行。</textarea><label class="field-label" for="send-policy">接收方访问策略 Pₛ</label><input id="send-policy" value="A1 AND A2" spellcheck="false"><div class="presets"><button data-policy="A1 AND A2">授权通行</button><button data-policy="A1 AND (A3 OR A4)">城市服务</button><button data-policy="A1 AND A5">车队共享</button></div><button class="primary" id="send-button"><span>加密并发送至云端</span><span>↗</span></button><p class="hint">电脑 A：Signcryption · AES-GCM 文字封装</p></div>
+<div id="owner-form"><label class="field-label" for="message-text">加密文字 <span>仅在 A 端处理明文</span></label><textarea id="message-text" rows="3" maxlength="4000">新港路口路况：东向车道正在施工，请授权车辆减速绕行。</textarea><label class="field-label" for="send-policy">接收方访问策略 Pₛ</label><input id="send-policy" value="A1 AND A2" spellcheck="false"><div class="presets"><button data-policy="A1 AND A2">A1 且 A2</button><button data-policy="A1 AND (A3 OR A4)">A1 且（A3 或 A4）</button><button data-policy="A1 AND A5">A1 且 A5</button></div><button class="primary" id="send-button"><span>加密并发送至云端</span><span>↗</span></button><p class="hint">电脑 A：Signcryption · AES-GCM 文字封装</p></div>
 <div id="user-form" class="hidden"><label class="field-label" for="receive-message">选择云端密文</label><select id="receive-message"></select><label class="field-label" for="reverse-policy">对发送方的验证策略 Pᵣ</label><input id="reverse-policy" value="A1 AND A2" spellcheck="false"><p class="hint left">双方策略均满足后，B 转换密文，C 使用本机私钥解密。</p><button class="primary" id="decrypt-button"><span>请求转换并本地解密</span><span>↓</span></button></div>
 <div id="cloud-form" class="hidden"><div class="cloud-illustration">☁<span>VCS</span></div><h3>云端转换节点</h3><p class="hint left">密文在此存储、验证并转换。明文只会出现在拥有者 A 和成功解密的数据用户 C 上。</p><div class="cloud-steps"><span>01 验证接收策略</span><span>02 验证发送属性</span><span>03 输出 D₁ / D₄</span></div></div>
 </section>
@@ -42,12 +42,13 @@
 <h3>Key Curator · 注册管理</h3><p class="hint left">A/C 本机生成私钥，D 校验公钥并执行分层 RegPK。身份编号不重复使用。</p>
 <label class="field-label" for="new-name">新车辆名称</label><input id="new-name" value="新港车辆" maxlength="60">
 <label class="field-label" for="new-role">车辆角色</label><select id="new-role"><option value="owner">数据拥有者 · A 端生成密钥</option><option value="user">数据用户 · C 端生成密钥</option></select>
-<label class="field-label" for="new-attrs">注册属性（逗号分隔）</label><input id="new-attrs" value="A1,A2,A3" spellcheck="false">
+<label class="field-label" for="new-attrs">属性名称（逗号分隔）</label><input id="new-attrs" placeholder="例如：特斯拉,新能源,授权通行" maxlength="3050" spellcheck="false">
 <button class="primary" id="register-button">注册新车辆</button>
 <div class="version-info" id="registration-info">等待 D 就绪</div>
 <div class="action-note"><span class="note-icon">⊘</span><p>注销当前车辆：更新聚合公钥及辅助项，并停止该身份的在线访问。已获得的明文不能收回。</p></div>
-<button class="danger" id="deregister-button">注销当前车辆</button><div id="registration-jobs" class="registration-jobs"></div>
+<button class="danger" id="deregister-button">注销当前车辆</button><button class="secondary" id="rejoin-button">让当前车辆重新加入</button><div id="registration-jobs" class="registration-jobs"></div>
 </section>
+<details><summary>属性字典 · 策略编号与名称</summary><p class="hint left">注册时自动分配名称；访问策略使用对应的 A 编号。</p><div id="attribute-dictionary" class="attribute-dictionary"></div></details>
 <div class="result-box hidden" id="result-box" role="status"></div>
 <div class="panel-footer"><span class="live-dot"></span><span id="local-status">等待连接</span><span>分层注册 · 研究演示</span></div>
 </aside>

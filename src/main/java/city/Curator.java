@@ -19,11 +19,11 @@ public final class Curator {
   public Curator(Properties p, Path params) throws Exception {
     this.params = params;
     data = Paths.get(p.getProperty("data"));
-    int n = Integer.parseInt(p.getProperty("vehicles", "16"));
+    int n = Integer.parseInt(p.getProperty("vehicles", "128"));
     int cap = 1;
     while (cap < n) cap *= 2;
     capacity = cap;
-    universe = Integer.parseInt(p.getProperty("attributes", "8"));
+    universe = Integer.parseInt(p.getProperty("attributes", "50"));
     if (n < 2 || n > 128 || universe < 5 || universe > 50)
       throw new IllegalArgumentException("capacity 2..128; attributes 5..50");
     for (String r : Arrays.asList("owner", "user", "cloud"))
@@ -104,6 +104,17 @@ public final class Curator {
               new LinkedHashMap<String, Object>());
       Wire.save(data.resolve("registry-state.json"), loaded);
     }
+    if (!loaded.containsKey("attributeNames")) {
+      Map<String, Object> names = new LinkedHashMap<>();
+      // Legacy registrations used these labels in the UI. Reserve only used slots.
+      String[] legacy = {"注册车辆", "授权通行", "应急服务", "市政服务", "车队成员", "城区许可", "设备可信", "交通调度", "物流运输", "路况采集"};
+      for (String collection : Arrays.asList("vehicles", "jobs"))
+        for (Object item : Json.list(loaded.get(collection)))
+          for (int a : Wire.ints(Json.map(item).get("attributes"), universe))
+            names.put("A" + (a + 1), a < legacy.length ? legacy[a] : "历史属性 A" + (a + 1));
+      loaded.put("attributeNames", names);
+      Wire.save(data.resolve("registry-state.json"), loaded);
+    }
     synchronized (this) {
       db = loaded;
       context =
@@ -154,6 +165,8 @@ public final class Curator {
         db == null ? Collections.emptyList() : new ArrayList<>(Json.list(db.get("latest"))),
         "capacity",
         capacity,
+        "attributeNames",
+        db == null ? Collections.emptyMap() : db.get("attributeNames"),
         "universe",
         universe,
         "deployment",
@@ -175,9 +188,8 @@ public final class Curator {
       String role = Json.str(b, "role"), name = Json.str(b, "name").trim();
       if (!Arrays.asList("owner", "user").contains(role) || name.isEmpty() || name.length() > 60)
         throw new IllegalArgumentException("车辆名称或角色错误");
-      Set<Integer> attrs = Wire.ints(b.get("attributes"), universe);
-      if (attrs.isEmpty()) throw new IllegalArgumentException("至少一个属性");
       Map<String, Object> next = Compiler6.copy(db);
+      Set<Integer> attrs = registrationAttributes(next, b);
       List<Object> jobs = Json.list(next.get("jobs"));
       long pending = jobs.stream().filter(j -> !"done".equals(Json.map(j).get("status"))).count();
       if (Json.num(next, "ctr") + pending >= capacity)
@@ -205,6 +217,41 @@ public final class Curator {
           id,
           "message",
           "已排队，等待 " + (role.equals("owner") ? "A" : "C") + " 本地 KeyGen");
+    }
+    if (path.equals("/rejoin")) {
+      int id = Json.num(b, "vehicle");
+      Map<String, Object> next = Compiler6.copy(db), v = Compiler6.vehicle(next, id);
+      if (Boolean.TRUE.equals(v.get("registered")))
+        throw new IllegalStateException("车辆已在系统中");
+      v.put("registered", true);
+      v.put("rejoinedAt", System.currentTimeMillis());
+      Map<String, Object> blocks = Json.map(next.get("blocks")), d2 = Json.map(next.get("D2"));
+      List<Object> latest = Json.list(next.get("latest"));
+      int revision = Json.num(next, "revision") + 1;
+      Set<String> current = new LinkedHashSet<>();
+      for (Object x : d2.values()) current.add((String) x);
+      for (Object x : latest) if (x != null) current.add((String) x);
+      for (String oldId : current) {
+        Map<String, Object> old = Json.map(blocks.get(oldId));
+        int k = Json.num(old, "level"), start = Json.num(old, "start");
+        Scheme s = levels.get(k);
+        if (id < start || id >= start + s.n) continue;
+        // Rebuild from the immutable original registration, retaining all other removals.
+        Map<String, Object> base = Json.map(blocks.get(k + "-" + start + "-base"));
+        Scheme.Registry reg = Wire.registry(s, Json.map(base.get("registry")));
+        for (int j = 0; j < s.n; j++)
+          if (!Boolean.TRUE.equals(Compiler6.vehicle(next, start + j).get("registered")))
+            reg = s.deregister(reg, j);
+        String bid = k + "-" + start + "-r" + revision;
+        blocks.put(bid, Json.obj("id", bid, "level", k, "start", start,
+            "revision", revision, "registry", Wire.registry(reg)));
+        for (Map.Entry<String, Object> e : d2.entrySet())
+          if (oldId.equals(e.getValue())) e.setValue(bid);
+        for (int j = 0; j < latest.size(); j++) if (oldId.equals(latest.get(j))) latest.set(j, bid);
+      }
+      next.put("revision", revision);
+      commit(next);
+      return Json.obj("ok", true, "vehicle", id, "message", "车辆已重新加入，保留原编号、属性和本机密钥");
     }
     if (path.equals("/deregister")) {
       int id = Json.num(b, "vehicle");
@@ -258,6 +305,35 @@ public final class Curator {
           "Deregister 已更新聚合公钥和其他车辆的辅助项");
     }
     throw new SecurityException("D 端仅提供注册和注销");
+  }
+
+  Set<Integer> registrationAttributes(Map<String, Object> next, Map<String, Object> b) {
+    Map<String, Object> names = Json.map(next.get("attributeNames"));
+    Set<Integer> attrs = new LinkedHashSet<>();
+    if (b.containsKey("attributeNames")) {
+      for (Object value : Json.list(b.get("attributeNames"))) {
+        if (!(value instanceof String)) throw new IllegalArgumentException("请输入属性名称");
+        String name = ((String) value).trim();
+        if (name.isEmpty() || name.length() > 60)
+          throw new IllegalArgumentException("属性名称须为 1–60 个字符");
+        String code = null;
+        for (Map.Entry<String, Object> e : names.entrySet())
+          if (name.equals(e.getValue())) { code = e.getKey(); break; }
+        if (code == null) {
+          for (int i = 1; i <= universe; i++)
+            if (!names.containsKey("A" + i)) { code = "A" + i; break; }
+          if (code == null) throw new IllegalStateException("属性字典已满，最多 " + universe + " 个不同属性");
+          names.put(code, name);
+        }
+        attrs.add(Integer.parseInt(code.substring(1)) - 1);
+      }
+    } else {
+      // Retain numeric API compatibility, reserving slots so names cannot silently change.
+      attrs.addAll(Wire.ints(b.get("attributes"), universe));
+      for (int a : attrs) names.putIfAbsent("A" + (a + 1), "A" + (a + 1));
+    }
+    if (attrs.isEmpty()) throw new IllegalArgumentException("至少一个属性");
+    return attrs;
   }
 
   public synchronized Map<String, Object> api(String path, Map<String, Object> b, String role)

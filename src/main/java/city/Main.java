@@ -23,14 +23,14 @@ public final class Main {
       prepare(
           Paths.get(args.length > 1 ? args[1] : "config/local"),
           args.length > 2 ? args[2] : "http://127.0.0.1:8080",
-          args.length > 3 ? Integer.parseInt(args[3]) : 16,
-          args.length > 4 ? Integer.parseInt(args[4]) : 8,
+          args.length > 3 ? Integer.parseInt(args[3]) : 128,
+          args.length > 4 ? Integer.parseInt(args[4]) : 50,
           args.length > 5 ? args[5] : "http://127.0.0.1:8083");
       return;
     }
     if (args.length < 1) {
       System.out.println(
-          "Usage: java -jar rabe-city.jar config/cloud.properties | prepare config/local http://B_IP:8080 16 8 http://D_IP:8083");
+          "Usage: java -jar rabe-city.jar config/cloud.properties | prepare config/local http://B_IP:8080 128 50 http://D_IP:8083");
       return;
     }
     Properties p = new Properties();

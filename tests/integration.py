@@ -67,12 +67,20 @@ try:
  wait(lambda:all(state(r)['localReady'] for r in ports));check(state('curator')['ctr']==0,'initial zero registrations')
  # Node authority is enforced in the backend, including direct HTTP bypasses.
  for role in ['owner','user','cloud']:
-  local(role,'register',{'name':'denied','role':'user','attributes':[0]},403);local(role,'deregister',{'vehicle':0},403)
+  local(role,'register',{'name':'denied','role':'user','attributes':[0]},403);local(role,'deregister',{'vehicle':0},403);local(role,'rejoin',{'vehicle':0},403)
  for path in ['send','decrypt','trace','revoke','leak','motion/set']:local('curator',path,{},403)
  request(BASE+3,'/node/submit',{},'bad-token',403);CHECKS.append('invalid node token denied')
- full=[0,1,2,3,4];register('owner',full,'owner-full');m1,t1=send()
+ full=[0,1,2,3,4]
+ names=['特斯拉','新能源','授权通行','市政服务','车队成员']
+ local('curator','register',{'name':'owner-full','role':'owner','attributeNames':names+['特斯拉']});wait(lambda:state('curator')['ctr']==1)
+ check(state('curator')['vehicles'][0]['attributes']==full,'named attributes allocated sequentially and deduplicated')
+ expected_names={'A'+str(i+1):name for i,name in enumerate(names)}
+ check(state('curator')['attributeNames']==expected_names,'persistent name dictionary exposed')
+ local('curator','register',{'name':'overflow-attribute','role':'user','attributeNames':['第六个属性']},409)
+ check(state('curator')['attributeNames']==expected_names and state('curator')['ctr']==1,'dictionary overflow rejected atomically')
+ m1,t1=send()
  # Stop C briefly so an authorized but pending registration can be attacked deterministically.
- stop('user');job=local('curator','register',{'name':'user-full','role':'user','attributes':full})['job']
+ stop('user');job=local('curator','register',{'name':'user-full','role':'user','attributeNames':names})['job']
  owner_keys=json.loads((OUT/'data/owner/private-keys.json').read_text())['keys']['0']['secret'];pub=[{k:v for k,v in x.items() if k not in ['r','q','z']} for x in owner_keys]
  request(BASE+3,'/node/submit',{'job':job,'ctr':0,'public':pub},tokens['user'],409);check(state('curator')['ctr']==1,'stale ctr leaves state unchanged')
  request(BASE+3,'/node/submit',{'job':job,'ctr':1,'public':pub},tokens['owner'],403);CHECKS.append('wrong role cannot submit approved job')
@@ -96,6 +104,15 @@ try:
  local('owner','revoke',{'id':m8['id'],'target':5});decrypt(m8,5,False,reason='REVOKED');decrypt(m8,4,text=t8);decrypt(m8,7,text=t8)
  check(local('cloud','trace',{'sample':sample['id']})['identity']==2,'trace after deregistration')
  local('curator','register',{'name':'overflow','role':'user','attributes':full},409)
+ # Rejoin at full capacity must restore aggregates without restoring another removed member.
+ local('curator','deregister',{'vehicle':2})
+ local('curator','rejoin',{'vehicle':1});check(state('curator')['ctr']==8 and state('curator')['vehicles'][1]['registered'],'rejoin reuses identity at full capacity')
+ local('curator','rejoin',{'vehicle':1},409)
+ mr,tr=send();decrypt(mr,1,text=tr);decrypt(mr,4,text=tr)
+ local('user','decrypt',{'id':mr['id'],'receiver':2,'reverse':'A1'},403)
+ decrypt(m5,1,False,reason='REVOKED')
+ local('curator','deregister',{'vehicle':1});local('curator','rejoin',{'vehicle':1})
+ local('curator','rejoin',{'vehicle':2});local('curator','deregister',{'vehicle':1})
  # Repeated exchanges with all 4 bilateral policy cases, plus nontrivial OR expressions.
  for i in range(12):
   m,text=send(0,'A1 AND (A2 OR A3)');decrypt(m,4,text=text);decrypt(m,2,text=text,reverse='A1')
@@ -104,7 +121,7 @@ try:
  # Persistence: restart all JVMs, preserving registration, keys, messages, per-car inbox and motion.
  for role in list(PROCS):stop(role)
  for role in ports:start(role)
- wait(lambda:all(state(r)['localReady'] for r in ports));check(state('curator')['ctr']==8 and state('curator')['enrolled']==7,'persistent ctr and deregistration');check(request(BASE,'/api/motion')['elapsed']==frozen,'clock persisted across B restart');decrypt(m8,4,text=t8);check(request(BASE+2,'/api/inbox?vehicle=2')['inbox'][0]['receiver']==2,'vehicle-scoped inbox persists')
+ wait(lambda:all(state(r)['localReady'] for r in ports));check(state('curator')['ctr']==8 and state('curator')['enrolled']==7,'persistent ctr and deregistration');check(state('curator')['attributeNames']==expected_names,'attribute dictionary survives restart');check(state('owner')['attributeNames']==expected_names,'dictionary available on A');check(request(BASE,'/api/motion')['elapsed']==frozen,'clock persisted across B restart');decrypt(m8,4,text=t8);check(request(BASE+2,'/api/inbox?vehicle=2')['inbox'][0]['receiver']==2,'vehicle-scoped inbox persists')
  local('cloud','motion/set',{'paused':False});time.sleep(.25);a=request(BASE+1,'/api/motion')['elapsed'];c=request(BASE+2,'/api/motion')['elapsed'];check(abs(a-c)<.3 and a>frozen,'live proxies follow B clock')
  # Public files at D and B must not contain the ordinary private scalar fields.
  d=json.loads((OUT/'data/curator/registry-state.json').read_text());check(all(not any(k in pk for k in ['r','q','z']) for v in d['vehicles'] for pk in v['public']),'curator stores only registration public keys')

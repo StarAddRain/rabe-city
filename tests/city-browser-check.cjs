@@ -23,7 +23,9 @@ const vehicles = Array.from({length:16}, (_,id) => ({id,number:`V-${String(id+1)
    await page.route('**/api/**',async route=> {
     const path=new URL(route.request().url()).pathname;
     let json;
-    if(path==='/api/state') json={role,csrf:'fixture-only',ready:true,localReady:true,enrolled:16,ctr:16,capacity:128,phase:'地图验证 · 16 辆测试车辆',nodes:{owner:true,cloud:true,user:true,curator:true},vehicles,messages:[],samples:[],events:[],jobs:[]};
+    if(path==='/api/state') json={role,csrf:'fixture-only',ready:true,localReady:true,enrolled:16,ctr:16,capacity:128,phase:'地图验证 · 16 辆测试车辆',nodes:{owner:true,cloud:true,user:true,curator:true},universe:50,attributeNames:{A1:'特斯拉',A2:'新能源',A3:'授权通行'},vehicles,messages:[],samples:[],events:[],jobs:[]};
+    else if(path==='/api/register'){assert.deepEqual(route.request().postDataJSON().attributeNames,['特斯拉','新能源']);json={message:'已排队'};}
+    else if(path==='/api/rejoin'){const id=route.request().postDataJSON().vehicle;assert.equal(id,1);vehicles[id].registered=true;json={message:'已重新加入'};}
     else if(path==='/api/motion/set'){motion={...clockValue(),...route.request().postDataJSON()};stamp=Date.now();json=clockValue();}
     else if(path==='/api/motion')json=clockValue();
     else if(path==='/api/inbox')json={vehicle:Number(new URL(route.request().url()).searchParams.get('vehicle')),inbox:[]};
@@ -80,6 +82,22 @@ const vehicles = Array.from({length:16}, (_,id) => ({id,number:`V-${String(id+1)
     assert.ok(mobile.camera.offset.y+mobile.world.h*mobile.camera.scale<=450.01);
     if(role==='owner')await page.screenshot({path:output+'/mobile.png'});
     checks.push(role+': click, single cabin, stable driver, movement, pause, day/night and mobile fit');
+   }
+   if(role==='curator'){
+    await page.locator('#new-attrs').fill('特斯拉，新能源');
+    await page.locator('#register-button').click();
+    await page.waitForFunction(()=>document.getElementById('register-button').disabled===false);
+    vehicles[1].registered=false;
+    await page.waitForFunction(()=>document.querySelector('#vehicle-select option[value="1"]').textContent.includes('已注销'));
+    const current=await page.evaluate(()=>City.snapshot());const p=current.positions.find(p=>p.id===1);
+    await page.mouse.click(current.camera.offset.x+p.x*current.camera.scale,current.camera.offset.y+p.y*current.camera.scale);
+    await page.waitForFunction(()=>document.getElementById('rejoin-button').disabled===false);
+    assert.match(await page.locator('#attributes').textContent(),/特斯拉/);
+    assert.equal(await page.locator('#attribute-dictionary span').count(),50);
+    await page.locator('#rejoin-button').click();
+    await page.waitForFunction(()=>document.getElementById('selected-status').textContent==='已注册');
+    assert.equal(await page.locator('#rejoin-button').isDisabled(),true);
+    checks.push('curator: named registration, 50-slot dictionary, select deregistered car on map and rejoin');
    }
    await context.close();
   }

@@ -186,7 +186,7 @@ public final class Client {
   }
 
   public synchronized Object api(String path, Map<String, Object> b) throws Exception {
-    if (path.equals("/register") || path.equals("/deregister"))
+    if (path.equals("/register") || path.equals("/deregister") || path.equals("/rejoin"))
       throw new SecurityException("仅 D 端可注册/注销");
     if (!ready) throw new IllegalStateException(phase);
     Map<String, Object> view = peer.view();
