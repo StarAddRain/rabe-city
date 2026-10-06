@@ -6,11 +6,34 @@ const base = process.env.CITY_TEST_URL || 'http://127.0.0.1:8891';
 const output = process.env.CITY_TEST_OUTPUT || 'build/map-check';
 fs.mkdirSync(output,{recursive:true});
 const vehicles = Array.from({length:16}, (_,id) => ({id,number:`V-${String(id+1).padStart(3,'0')}`,role:id%2?'user':'owner',attributes:[0,1,2],registered:true}));
+async function verifyMapFit(page) {
+ const layout=await page.evaluate(()=>{
+  const snapshot=City.snapshot(),{scale,offset}=snapshot.camera;
+  const image=document.querySelector('#city').getBoundingClientRect();
+  return {scale,world:snapshot.world,left:offset.x,top:offset.y,
+   width:snapshot.world.w*scale,height:snapshot.world.h*scale,
+   viewportWidth:innerWidth,viewportHeight:innerWidth<=600?450:innerHeight,
+   canvasWidth:image.width,canvasHeight:image.height};
+ });
+ assert.ok(Number.isFinite(layout.scale)&&layout.scale>0,'map scale must be positive');
+ assert.ok(layout.left>=0&&layout.top>=0,'map starts inside viewport');
+ assert.ok(layout.left+layout.width<=layout.viewportWidth+.01,'entire map width fits viewport');
+ assert.ok(layout.top+layout.height<=layout.viewportHeight+.01,'entire map height fits viewport');
+ assert.ok(Math.abs(layout.width/layout.height-1449/1086)<1e-9,'map keeps native aspect ratio');
+ assert.ok(Math.abs(layout.canvasWidth-layout.viewportWidth)<.01&&Math.abs(layout.canvasHeight-layout.viewportHeight)<.01,'canvas CSS dimensions match map viewport');
+}
+async function visibleVehicle(page,role) {
+ return page.evaluate(role=>{
+  const snapshot=City.snapshot(),{scale,offset}=snapshot.camera;
+  return snapshot.positions.find(p=>(!role||p.id%2===(role==='owner'?0:1))&&
+   document.elementFromPoint(offset.x+p.x*scale,offset.y+p.y*scale)?.id==='city');
+ },role);
+}
 (async () => {
- const imageResponse = await fetch(base+'/assets/pastel-canal-city-map.png');
+ const imageResponse = await fetch(base+'/assets/fuzhou-landmark-map.png');
  assert.equal(imageResponse.status,200); assert.equal(imageResponse.headers.get('content-type'),'image/png');
  assert.equal(imageResponse.headers.get('x-content-type-options'),'nosniff');
- assert.deepEqual(Buffer.from(await imageResponse.arrayBuffer()),fs.readFileSync('web/assets/pastel-canal-city-map.png'));
+ assert.deepEqual(Buffer.from(await imageResponse.arrayBuffer()),fs.readFileSync('web/assets/fuzhou-landmark-map.png'));
  const browser = await chromium.launch({headless:true,...(process.env.BROWSER_EXECUTABLE ? {executablePath:process.env.BROWSER_EXECUTABLE} : {channel:'chrome'})});
  const checks=['PNG served byte-for-byte with image/png and nosniff'];
  const errors=[]; const snapshots=[];
@@ -18,14 +41,14 @@ const vehicles = Array.from({length:16}, (_,id) => ({id,number:`V-${String(id+1)
   for(const role of ['owner','cloud','user','curator']) {
    const context = await browser.newContext({viewport:{width:1440,height:1000},deviceScaleFactor:1});
    const page = await context.newPage(); page.on('pageerror',e=>errors.push(e.message));
-   let motion={elapsed:123.456,paused:true}, stamp=Date.now();
+   let motion={elapsed:123.456,paused:true}, stamp=Date.now(), rejoinVehicleId=null;
    const clockValue=()=>({...motion,elapsed:motion.elapsed+(motion.paused?0:(Date.now()-stamp)/1000)});
    await page.route('**/api/**',async route=> {
     const path=new URL(route.request().url()).pathname;
     let json;
     if(path==='/api/state') json={role,csrf:'fixture-only',ready:true,localReady:true,enrolled:16,ctr:16,capacity:128,phase:'地图验证 · 16 辆测试车辆',nodes:{owner:true,cloud:true,user:true,curator:true},universe:50,attributeNames:{A1:'特斯拉',A2:'新能源',A3:'授权通行'},vehicles,messages:[],samples:[],events:[],jobs:[]};
     else if(path==='/api/register'){assert.deepEqual(route.request().postDataJSON().attributeNames,['特斯拉','新能源']);json={message:'已排队'};}
-    else if(path==='/api/rejoin'){const id=route.request().postDataJSON().vehicle;assert.equal(id,1);vehicles[id].registered=true;json={message:'已重新加入'};}
+    else if(path==='/api/rejoin'){const id=route.request().postDataJSON().vehicle;assert.equal(id,rejoinVehicleId);vehicles[id].registered=true;json={message:'已重新加入'};}
     else if(path==='/api/motion/set'){motion={...clockValue(),...route.request().postDataJSON()};stamp=Date.now();json=clockValue();}
     else if(path==='/api/motion')json=clockValue();
     else if(path==='/api/inbox')json={vehicle:Number(new URL(route.request().url()).searchParams.get('vehicle')),inbox:[]};
@@ -35,13 +58,15 @@ const vehicles = Array.from({length:16}, (_,id) => ({id,number:`V-${String(id+1)
    await page.goto(base); await page.waitForFunction(()=>City.snapshot().mapState==='ready'&&City.snapshot().positions.length===16);
    await page.locator('#recenter').click();
    const snapshot = await page.evaluate(()=>City.snapshot()); snapshots.push(snapshot.positions);
-   assert.equal(snapshot.routeCount,12);assert.equal(snapshot.world.w,1672);assert.equal(snapshot.world.h,941);
+   assert.equal(snapshot.routeCount,10);assert.equal(snapshot.world.w,1449);assert.equal(snapshot.world.h,1086);
    const {scale,offset}=snapshot.camera;
-   assert.ok(offset.x>=0&&offset.y>=0&&offset.x+1672*scale<=1440&&offset.y+941*scale<=1000);
+   await verifyMapFit(page);
    if(role==='owner')await page.screenshot({path:output+'/overview.png'});
    checks.push(role+': native map aspect, full view and 16 registered vehicles');
    if(role==='owner'||role==='user'){
-    const id=role==='owner'?0:1; const p=snapshot.positions.find(p=>p.id===id);
+    const p=await visibleVehicle(page,role);
+    assert.ok(p,'a vehicle of this role must be visible and clickable');
+    const id=p.id;
     await page.mouse.click(offset.x+p.x*scale,offset.y+p.y*scale);
     await page.waitForFunction(id=>Cockpit.snapshot().open&&Cockpit.snapshot().vehicleId===id,id);
     assert.equal(await page.locator('.cockpit-view:not(.hidden)').count(),1);
@@ -53,7 +78,7 @@ const vehicles = Array.from({length:16}, (_,id) => ({id,number:`V-${String(id+1)
     await page.waitForTimeout(1000);
     const moving=await page.evaluate(()=>City.snapshot().positions);
     assert.ok(moving.some((p,i)=>Math.hypot(p.x-initial[i].x,p.y-initial[i].y)>10));
-    const nextId=id+2;
+    const nextId=vehicles.find(v=>v.role===role&&v.id!==id).id;
     await page.selectOption('#vehicle-select',String(nextId));
     await page.waitForFunction(id=>Cockpit.snapshot().vehicleId===id,nextId);
     assert.equal(await page.locator('.cockpit-view:not(.hidden)').count(),1);
@@ -76,10 +101,7 @@ const vehicles = Array.from({length:16}, (_,id) => ({id,number:`V-${String(id+1)
     await page.locator('#night').click();
     await page.setViewportSize({width:390,height:844});
     await page.locator('#recenter').click();
-    const mobile=await page.evaluate(()=>City.snapshot());
-    assert.ok(mobile.camera.offset.x>=0&&mobile.camera.offset.y>=0);
-    assert.ok(mobile.camera.offset.x+mobile.world.w*mobile.camera.scale<=390.01);
-    assert.ok(mobile.camera.offset.y+mobile.world.h*mobile.camera.scale<=450.01);
+    await verifyMapFit(page);
     if(role==='owner')await page.screenshot({path:output+'/mobile.png'});
     checks.push(role+': click, single cabin, stable driver, movement, pause, day/night and mobile fit');
    }
@@ -87,9 +109,12 @@ const vehicles = Array.from({length:16}, (_,id) => ({id,number:`V-${String(id+1)
     await page.locator('#new-attrs').fill('特斯拉，新能源');
     await page.locator('#register-button').click();
     await page.waitForFunction(()=>document.getElementById('register-button').disabled===false);
-    vehicles[1].registered=false;
-    await page.waitForFunction(()=>document.querySelector('#vehicle-select option[value="1"]').textContent.includes('已注销'));
-    const current=await page.evaluate(()=>City.snapshot());const p=current.positions.find(p=>p.id===1);
+    const p=await visibleVehicle(page);
+    assert.ok(p,'a vehicle must be visible for deregistration and rejoin checks');
+    rejoinVehicleId=p.id;
+    vehicles[rejoinVehicleId].registered=false;
+    await page.waitForFunction(id=>document.querySelector('#vehicle-select option[value="'+id+'"]').textContent.includes('已注销'),rejoinVehicleId);
+    const current=await page.evaluate(()=>City.snapshot());
     await page.mouse.click(current.camera.offset.x+p.x*current.camera.scale,current.camera.offset.y+p.y*current.camera.scale);
     await page.waitForFunction(()=>document.getElementById('rejoin-button').disabled===false);
     assert.match(await page.locator('#attributes').textContent(),/特斯拉/);

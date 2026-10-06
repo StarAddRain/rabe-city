@@ -37,13 +37,13 @@
 .cockpit-driver-tag i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--cabin-accent);margin-right:3px}
 .cockpit-footer{height:31px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;gap:12px;font-size:9px;color:#d1ded1;background:#2b4239}
 #cockpit-motion{white-space:nowrap;color:#eceddb}#cockpit-data-hint{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;text-align:right}
-.cockpit-active .map-caption{opacity:0}.map-caption{transition:opacity .25s}
-.cockpit-active .bottom-dock{height:118px}.cockpit-active .dock-content{height:71px;padding:8px 13px}.cockpit-active .message-card{padding:6px 9px}.cockpit-active .message-card b{margin:5px 0}.cockpit-active .map-label{bottom:188px}.cockpit-active .legend{bottom:159px}
+
+.cockpit-active .bottom-dock{height:118px}.cockpit-active .dock-content{height:71px;padding:8px 13px}.cockpit-active .message-card{padding:6px 9px}.cockpit-active .message-card b{margin:5px 0}.cockpit-active .legend{bottom:159px}
 .cockpit-active .pipeline{bottom:155px}
 .cockpit-view[data-paused=true] .cockpit-road-flow{animation-play-state:paused}
 @keyframes cabin-enter{from{opacity:0;scale:.91;translate:0 24px}to{opacity:1;scale:1;translate:0 0}}
 @media(max-width:900px){.cockpit-header{height:37px;padding:0 8px}.cockpit-header>div{gap:6px}.cockpit-header strong{font-size:13px}.cockpit-tag{font-size:8px;padding:5px 6px}.cockpit-header button{font-size:9px;padding:5px 6px}.cockpit-footer{height:27px;padding:0 8px;font-size:8px}.cockpit-driver-tag{font-size:8px;left:8px;bottom:8px;padding:5px}}
-@media(max-width:600px){.cockpit-active .stats{display:none}.cockpit-view{border-radius:12px}.cockpit-header{height:34px}.cockpit-footer{height:25px}.cockpit-active .map-label,.cockpit-active .legend{display:none}.cockpit-active .bottom-dock{height:150px}.cockpit-active .dock-content{height:104px}.cockpit-active .map-tools{top:95px}.cockpit-active .pipeline{bottom:auto;top:410px}.cockpit-screen{padding:2px}.cockpit-header strong{font-size:12px}}
-@media(prefers-reduced-motion:reduce){.cockpit-view{animation:none}.map-caption{transition:none}}
+@media(max-width:600px){.cockpit-active .stats{display:none}.cockpit-view{border-radius:12px}.cockpit-header{height:34px}.cockpit-footer{height:25px}.cockpit-active .legend{display:none}.cockpit-active .bottom-dock{height:150px}.cockpit-active .dock-content{height:104px}.cockpit-active .map-tools{top:95px}.cockpit-active .pipeline{bottom:auto;top:410px}.cockpit-screen{padding:2px}.cockpit-header strong{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.cockpit-view{animation:none}}
 
 @media(max-width:600px){.cockpit-view,.cockpit-tether{position:absolute}.cockpit-tether{height:450px}.cockpit-active #city{position:absolute}}

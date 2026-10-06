@@ -1,0 +1,338 @@
+{
+  "image": "C:\\Users\\16006\\Desktop\\十一届全国密码技术竞赛\\rabe-city-repository\\rabe-city\\web\\assets\\fuzhou-landmark-map.png",
+  "dimensions": {
+    "w": 1449,
+    "h": 1086
+  },
+  "imageSha256": "9c7d3ffecbc7f4479818efd1b1847b7348885ed936209dd38fd2a1c602e5fca9",
+  "geometrySha256": "455a2c82fcd6389aa80bbb28f56f5bd1d85d52674cbcc88facfb29186b1dbacf",
+  "world": {
+    "w": 1449,
+    "h": 1086
+  },
+  "dimensionsMatch": true,
+  "stepPixelsAtMost": 0.5,
+  "footprint": {
+    "vehicleScale": 0.65,
+    "length": 11.700000000000001,
+    "widthIncludingWheels": 5.59,
+    "probeCount": 37,
+    "shape": "conservative enclosing rectangle perimeter plus center"
+  },
+  "classifier": {
+    "red": [
+      75,
+      145
+    ],
+    "greenMinusRed": [
+      3,
+      27
+    ],
+    "blueMinusGreen": [
+      -4,
+      19
+    ],
+    "maximumChannel": 150,
+    "reviewedRoadTint": {
+      "red": [
+        75,
+        125
+      ],
+      "greenMinusRed": [
+        3,
+        36
+      ],
+      "blueMinusGreen": [
+        -4,
+        31
+      ],
+      "maximumChannel": 155,
+      "regions": [
+        {
+          "name": "west canal bridge",
+          "bounds": [
+            330,
+            511,
+            378,
+            543
+          ],
+          "reason": "Continuous paved bridge deck, with a blue-grey canal reflection."
+        },
+        {
+          "name": "south Liming Lake bridge",
+          "bounds": [
+            637,
+            1030,
+            678,
+            1055
+          ],
+          "reason": "Continuous paved bridge deck between the lake and south canal."
+        },
+        {
+          "name": "north Wushan road colour patch",
+          "bounds": [
+            327,
+            637,
+            349,
+            657
+          ],
+          "reason": "Enlarged source shows uninterrupted paved road between white curbs; blue-grey pixels around RGB(90,111,131) are road shading, not water or a label."
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "Road colours are sampled from this specific illustration, not a semantic road dataset.",
+    "Labels, unusual shading, and non-grey patches are reported as failures requiring visual review.",
+    "No failed pixels are exempted or automatically interpreted as a bridge or hidden road.",
+    "Visually verified bridge decks and one paved-road colour patch use a separate dark blue-grey colour class only within the documented image rectangles.",
+    "The test checks lane placement; it does not prove traffic-light obedience or vehicle collision avoidance."
+  ],
+  "routes": [
+    {
+      "index": 0,
+      "name": "西北沿河",
+      "direction": "forward",
+      "length": 1375.3874315457697,
+      "sampleCount": 2751,
+      "failedCenterSamples": 0,
+      "failedFootprintSamples": 0,
+      "outsideImageSamples": 0,
+      "failureSpans": [],
+      "failures": []
+    },
+    {
+      "index": 0,
+      "name": "西北沿河",
+      "direction": "reverse",
+      "length": 1423.322324890326,
+      "sampleCount": 2847,
+      "failedCenterSamples": 0,
+      "failedFootprintSamples": 0,
+      "outsideImageSamples": 0,
+      "failureSpans": [],
+      "failures": []
+    },
+    {
+      "index": 1,
+      "name": "三坊七巷外围",
+      "direction": "forward",
+      "length": 2083.473283204848,
+      "sampleCount": 4167,
+      "failedCenterSamples": 0,
+      "failedFootprintSamples": 0,
+      "outsideImageSamples": 0,
+      "failureSpans": [],
+      "failures": []
+    },
+    {
+      "index": 1,
+      "name": "三坊七巷外围",
+      "direction": "reverse",
+      "length": 2127.619623315394,
+      "sampleCount": 4256,
+      "failedCenterSamples": 0,
+      "failedFootprintSamples": 0,
+      "outsideImageSamples": 0,
+      "failureSpans": [],
+      "failures": []
+    },
+    {
+      "index": 2,
+      "name": "乌山于山连接",
+      "direction": "forward",
+      "length": 702.4638533688897,
+      "sampleCount": 1405,
+      "failedCenterSamples": 0,
+      "failedFootprintSamples": 0,
+      "outsideImageSamples": 0,
+      "failureSpans": [],
+      "failures": []
+    },
+    {
+      "index": 2,
+      "name": "乌山于山连接",
+      "direction": "reverse",
+      "length": 750.0666119286421,
+      "sampleCount": 1501,
+      "failedCenterSamples": 0,
+      "failedFootprintSamples": 0,
+      "outsideImageSamples": 0,
+      "failureSpans": [],
+      "failures": []
+    },
+    {
+      "index": 3,
+      "name": "东北住宅",
+      "direction": "forward",
+      "length": 797.9644595365751,
+      "sampleCount": 1596,
+      "failedCenterSamples": 0,
+      "failedFootprintSamples": 0,
+      "outsideImageSamples": 0,
+      "failureSpans": [],
+      "failures": []
+    },
+    {
+      "index": 3,
+      "name": "东北住宅",
+      "direction": "reverse",
+      "length": 846.2586917243993,
+      "sampleCount": 1693,
+      "failedCenterSamples": 0,
+      "failedFootprintSamples": 0,
+      "outsideImageSamples": 0,
+      "failureSpans": [],
+      "failures": []
+    },
+    {
+      "index": 4,
+      "name": "黎明湖公园",
+      "direction": "forward",
+      "length": 1107.64191127197,
+      "sampleCount": 2216,
+      "failedCenterSamples": 0,
+      "failedFootprintSamples": 0,
+      "outsideImageSamples": 0,
+      "failureSpans": [],
+      "failures": []
+    },
+    {
+      "index": 4,
+      "name": "黎明湖公园",
+      "direction": "reverse",
+      "length": 1152.5012973995422,
+      "sampleCount": 2306,
+      "failedCenterSamples": 0,
+      "failedFootprintSamples": 0,
+      "outsideImageSamples": 0,
+      "failureSpans": [],
+      "failures": []
+    },
+    {
+      "index": 5,
+      "name": "中央跨河",
+      "direction": "forward",
+      "length": 1078.3370876096835,
+      "sampleCount": 2157,
+      "failedCenterSamples": 0,
+      "failedFootprintSamples": 0,
+      "outsideImageSamples": 0,
+      "failureSpans": [],
+      "failures": []
+    },
+    {
+      "index": 5,
+      "name": "中央跨河",
+      "direction": "reverse",
+      "length": 1121.3476534448423,
+      "sampleCount": 2243,
+      "failedCenterSamples": 0,
+      "failedFootprintSamples": 0,
+      "outsideImageSamples": 0,
+      "failureSpans": [],
+      "failures": []
+    },
+    {
+      "index": 6,
+      "name": "于山与朱紫坊",
+      "direction": "forward",
+      "length": 1352.8393592085588,
+      "sampleCount": 2706,
+      "failedCenterSamples": 0,
+      "failedFootprintSamples": 0,
+      "outsideImageSamples": 0,
+      "failureSpans": [],
+      "failures": []
+    },
+    {
+      "index": 6,
+      "name": "于山与朱紫坊",
+      "direction": "reverse",
+      "length": 1397.4392728232797,
+      "sampleCount": 2795,
+      "failedCenterSamples": 0,
+      "failedFootprintSamples": 0,
+      "outsideImageSamples": 0,
+      "failureSpans": [],
+      "failures": []
+    },
+    {
+      "index": 7,
+      "name": "西南公园",
+      "direction": "forward",
+      "length": 1869.0426316798048,
+      "sampleCount": 3739,
+      "failedCenterSamples": 0,
+      "failedFootprintSamples": 0,
+      "outsideImageSamples": 0,
+      "failureSpans": [],
+      "failures": []
+    },
+    {
+      "index": 7,
+      "name": "西南公园",
+      "direction": "reverse",
+      "length": 1916.5777212676135,
+      "sampleCount": 3834,
+      "failedCenterSamples": 0,
+      "failedFootprintSamples": 0,
+      "outsideImageSamples": 0,
+      "failureSpans": [],
+      "failures": []
+    },
+    {
+      "index": 8,
+      "name": "南部住宅",
+      "direction": "forward",
+      "length": 883.0212146646066,
+      "sampleCount": 1767,
+      "failedCenterSamples": 0,
+      "failedFootprintSamples": 0,
+      "outsideImageSamples": 0,
+      "failureSpans": [],
+      "failures": []
+    },
+    {
+      "index": 8,
+      "name": "南部住宅",
+      "direction": "reverse",
+      "length": 926.5078942757614,
+      "sampleCount": 1854,
+      "failedCenterSamples": 0,
+      "failedFootprintSamples": 0,
+      "outsideImageSamples": 0,
+      "failureSpans": [],
+      "failures": []
+    },
+    {
+      "index": 9,
+      "name": "东南沿河",
+      "direction": "forward",
+      "length": 1168.5541802363682,
+      "sampleCount": 2338,
+      "failedCenterSamples": 0,
+      "failedFootprintSamples": 0,
+      "outsideImageSamples": 0,
+      "failureSpans": [],
+      "failures": []
+    },
+    {
+      "index": 9,
+      "name": "东南沿河",
+      "direction": "reverse",
+      "length": 1215.7019535581387,
+      "sampleCount": 2432,
+      "failedCenterSamples": 0,
+      "failedFootprintSamples": 0,
+      "outsideImageSamples": 0,
+      "failureSpans": [],
+      "failures": []
+    }
+  ],
+  "totalSamples": 50603,
+  "totalFailedCenterSamples": 0,
+  "totalFailedFootprintSamples": 0,
+  "totalOutsideImageSamples": 0,
+  "passed": true
+}

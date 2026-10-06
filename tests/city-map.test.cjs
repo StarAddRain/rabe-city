@@ -7,9 +7,10 @@ const ids = Array.from({ length: 128 }, (_, i) => i);
 const times = [0, 1.37, 12.31, 48.7, 1000];
 const distance = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
 
-test('map exposes twelve named, closed forward and reverse routes', () => {
-  assert.equal(map.routes.length, 12);
-  assert.equal(new Set(map.routes.map(route => route.name)).size, 12);
+test('landmark map exposes ten named, closed forward and reverse routes', () => {
+  assert.deepEqual(map.world, { w: 1449, h: 1086 });
+  assert.equal(map.routes.length, 10);
+  assert.equal(new Set(map.routes.map(route => route.name)).size, 10);
 
   for (const route of map.routes) {
     for (const direction of ['forward', 'reverse']) {
@@ -39,11 +40,11 @@ test('all registered vehicle IDs stay inside the image bounds', () => {
   }
 });
 
-test('the first twelve vehicles cover every route', () => {
-  const assignments = ids.slice(0, 12).map(id => map.assignment(id));
+test('the first ten vehicles cover every route', () => {
+  const assignments = ids.slice(0, map.routes.length).map(id => map.assignment(id));
   assert.deepEqual(
     new Set(assignments.map(item => item.index)),
-    new Set(Array.from({ length: 12 }, (_, i) => i))
+    new Set(Array.from({ length: map.routes.length }, (_, i) => i))
   );
   assert.ok(assignments.every(item => item.reverse === false));
 });
@@ -69,7 +70,7 @@ test('movement remains continuous when a vehicle crosses a route seam', () => {
 test('forward and reverse lanes are both assigned and remain separated', () => {
   for (let routeIndex = 0; routeIndex < map.routes.length; routeIndex++) {
     const forward = map.assignment(routeIndex);
-    const reverse = map.assignment(routeIndex + 12);
+    const reverse = map.assignment(routeIndex + map.routes.length);
     assert.equal(forward.index, reverse.index);
     assert.equal(forward.reverse, false);
     assert.equal(reverse.reverse, true);

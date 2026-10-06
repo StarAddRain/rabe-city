@@ -1,0 +1,1886 @@
+{
+  "results": [
+    {
+      "width": 390,
+      "height": 844,
+      "bar": {
+        "left": 12,
+        "right": 378,
+        "top": 20,
+        "bottom": 85,
+        "width": 366,
+        "height": 65
+      },
+      "children": [
+        {
+          "name": "brand",
+          "left": 25,
+          "right": 203.5,
+          "top": 33,
+          "bottom": 72,
+          "width": 178.5,
+          "height": 39
+        },
+        {
+          "name": "coordinate top-coordinate",
+          "left": 77,
+          "right": 144.421875,
+          "top": 64,
+          "bottom": 74,
+          "width": 67.421875,
+          "height": 10
+        },
+        {
+          "name": "role-pill",
+          "left": 226.984375,
+          "right": 323,
+          "top": 38.5,
+          "bottom": 66.5,
+          "width": 96.015625,
+          "height": 28
+        },
+        {
+          "name": "help-button",
+          "left": 336,
+          "right": 365,
+          "top": 38,
+          "bottom": 67,
+          "width": 29,
+          "height": 29
+        }
+      ],
+      "overflow": [],
+      "coordinateInBar": true,
+      "nodes": [
+        {
+          "id": "owner",
+          "text": "A 拥有者",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "id": "cloud",
+          "text": "B 云服务器",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "id": "user",
+          "text": "C 数据用户",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "id": "curator",
+          "text": "D 密钥管理者",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "legend": {
+        "left": 12,
+        "right": 218,
+        "top": 408,
+        "bottom": 440,
+        "width": 206,
+        "height": 32,
+        "background": "rgb(250, 251, 242)"
+      },
+      "legendPanelOverlap": false,
+      "legendDockOverlap": false,
+      "removedCount": 0,
+      "bodyWidth": 390
+    },
+    {
+      "width": 600,
+      "height": 844,
+      "bar": {
+        "left": 12,
+        "right": 588,
+        "top": 20,
+        "bottom": 85,
+        "width": 576,
+        "height": 65
+      },
+      "children": [
+        {
+          "name": "brand",
+          "left": 25,
+          "right": 203.5,
+          "top": 33,
+          "bottom": 72,
+          "width": 178.5,
+          "height": 39
+        },
+        {
+          "name": "coordinate top-coordinate",
+          "left": 77,
+          "right": 144.421875,
+          "top": 64,
+          "bottom": 74,
+          "width": 67.421875,
+          "height": 10
+        },
+        {
+          "name": "role-pill",
+          "left": 436.984375,
+          "right": 533,
+          "top": 38.5,
+          "bottom": 66.5,
+          "width": 96.015625,
+          "height": 28
+        },
+        {
+          "name": "help-button",
+          "left": 546,
+          "right": 575,
+          "top": 38,
+          "bottom": 67,
+          "width": 29,
+          "height": 29
+        }
+      ],
+      "overflow": [],
+      "coordinateInBar": true,
+      "nodes": [
+        {
+          "id": "owner",
+          "text": "A 拥有者",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "id": "cloud",
+          "text": "B 云服务器",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "id": "user",
+          "text": "C 数据用户",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "id": "curator",
+          "text": "D 密钥管理者",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "legend": {
+        "left": 12,
+        "right": 218,
+        "top": 408,
+        "bottom": 440,
+        "width": 206,
+        "height": 32,
+        "background": "rgb(250, 251, 242)"
+      },
+      "legendPanelOverlap": false,
+      "legendDockOverlap": false,
+      "removedCount": 0,
+      "bodyWidth": 600
+    },
+    {
+      "width": 901,
+      "height": 900,
+      "bar": {
+        "left": 24,
+        "right": 877,
+        "top": 20,
+        "bottom": 94,
+        "width": 853,
+        "height": 74
+      },
+      "children": [
+        {
+          "name": "brand",
+          "left": 47,
+          "right": 225.5,
+          "top": 35,
+          "bottom": 79,
+          "width": 178.5,
+          "height": 44
+        },
+        {
+          "name": "coordinate top-coordinate",
+          "left": 238.5,
+          "right": 313.46875,
+          "top": 51,
+          "bottom": 63,
+          "width": 74.96875,
+          "height": 12
+        },
+        {
+          "name": "role-pill",
+          "left": 686.203125,
+          "right": 812,
+          "top": 39.5,
+          "bottom": 74.5,
+          "width": 125.796875,
+          "height": 35
+        },
+        {
+          "name": "help-button",
+          "left": 825,
+          "right": 854,
+          "top": 42.5,
+          "bottom": 71.5,
+          "width": 29,
+          "height": 29
+        }
+      ],
+      "overflow": [],
+      "coordinateInBar": true,
+      "nodes": [
+        {
+          "id": "owner",
+          "text": "A 拥有者",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "id": "cloud",
+          "text": "B 云服务器",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "id": "user",
+          "text": "C 数据用户",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "id": "curator",
+          "text": "D 密钥管理者",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "legend": {
+        "left": 24,
+        "right": 375,
+        "top": 654,
+        "bottom": 686,
+        "width": 351,
+        "height": 32,
+        "background": "rgb(250, 251, 242)"
+      },
+      "legendPanelOverlap": false,
+      "legendDockOverlap": false,
+      "removedCount": 0,
+      "bodyWidth": 901
+    },
+    {
+      "width": 1001,
+      "height": 900,
+      "bar": {
+        "left": 24,
+        "right": 977,
+        "top": 20,
+        "bottom": 94,
+        "width": 953,
+        "height": 74
+      },
+      "children": [
+        {
+          "name": "brand",
+          "left": 47,
+          "right": 225.5,
+          "top": 35,
+          "bottom": 79,
+          "width": 178.5,
+          "height": 44
+        },
+        {
+          "name": "coordinate top-coordinate",
+          "left": 238.5,
+          "right": 313.46875,
+          "top": 51,
+          "bottom": 63,
+          "width": 74.96875,
+          "height": 12
+        },
+        {
+          "name": "node-strip",
+          "left": 346.546875,
+          "right": 773.203125,
+          "top": 42,
+          "bottom": 72,
+          "width": 426.65625,
+          "height": 30
+        },
+        {
+          "name": "role-pill",
+          "left": 786.203125,
+          "right": 912,
+          "top": 39.5,
+          "bottom": 74.5,
+          "width": 125.796875,
+          "height": 35
+        },
+        {
+          "name": "help-button",
+          "left": 925,
+          "right": 954,
+          "top": 42.5,
+          "bottom": 71.5,
+          "width": 29,
+          "height": 29
+        }
+      ],
+      "overflow": [],
+      "coordinateInBar": true,
+      "nodes": [
+        {
+          "id": "owner",
+          "text": "A 拥有者",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 346.546875,
+            "right": 424.59375,
+            "top": 42,
+            "bottom": 72,
+            "width": 78.046875,
+            "height": 30
+          }
+        },
+        {
+          "id": "cloud",
+          "text": "B 云服务器",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 449.59375,
+            "right": 536.875,
+            "top": 42,
+            "bottom": 72,
+            "width": 87.28125,
+            "height": 30
+          }
+        },
+        {
+          "id": "user",
+          "text": "C 数据用户",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 561.875,
+            "right": 649.578125,
+            "top": 42,
+            "bottom": 72,
+            "width": 87.703125,
+            "height": 30
+          }
+        },
+        {
+          "id": "curator",
+          "text": "D 密钥管理者",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 674.578125,
+            "right": 773.203125,
+            "top": 42,
+            "bottom": 72,
+            "width": 98.625,
+            "height": 30
+          }
+        }
+      ],
+      "legend": {
+        "left": 24,
+        "right": 375,
+        "top": 654,
+        "bottom": 686,
+        "width": 351,
+        "height": 32,
+        "background": "rgb(250, 251, 242)"
+      },
+      "legendPanelOverlap": false,
+      "legendDockOverlap": false,
+      "removedCount": 0,
+      "bodyWidth": 1001
+    },
+    {
+      "width": 1100,
+      "height": 900,
+      "bar": {
+        "left": 24,
+        "right": 1076,
+        "top": 20,
+        "bottom": 94,
+        "width": 1052,
+        "height": 74
+      },
+      "children": [
+        {
+          "name": "brand",
+          "left": 47,
+          "right": 225.5,
+          "top": 35,
+          "bottom": 79,
+          "width": 178.5,
+          "height": 44
+        },
+        {
+          "name": "coordinate top-coordinate",
+          "left": 238.5,
+          "right": 313.46875,
+          "top": 51,
+          "bottom": 63,
+          "width": 74.96875,
+          "height": 12
+        },
+        {
+          "name": "node-strip",
+          "left": 445.546875,
+          "right": 872.203125,
+          "top": 42,
+          "bottom": 72,
+          "width": 426.65625,
+          "height": 30
+        },
+        {
+          "name": "role-pill",
+          "left": 885.203125,
+          "right": 1011,
+          "top": 39.5,
+          "bottom": 74.5,
+          "width": 125.796875,
+          "height": 35
+        },
+        {
+          "name": "help-button",
+          "left": 1024,
+          "right": 1053,
+          "top": 42.5,
+          "bottom": 71.5,
+          "width": 29,
+          "height": 29
+        }
+      ],
+      "overflow": [],
+      "coordinateInBar": true,
+      "nodes": [
+        {
+          "id": "owner",
+          "text": "A 拥有者",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 445.546875,
+            "right": 523.59375,
+            "top": 42,
+            "bottom": 72,
+            "width": 78.046875,
+            "height": 30
+          }
+        },
+        {
+          "id": "cloud",
+          "text": "B 云服务器",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 548.59375,
+            "right": 635.875,
+            "top": 42,
+            "bottom": 72,
+            "width": 87.28125,
+            "height": 30
+          }
+        },
+        {
+          "id": "user",
+          "text": "C 数据用户",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 660.875,
+            "right": 748.578125,
+            "top": 42,
+            "bottom": 72,
+            "width": 87.703125,
+            "height": 30
+          }
+        },
+        {
+          "id": "curator",
+          "text": "D 密钥管理者",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 773.578125,
+            "right": 872.203125,
+            "top": 42,
+            "bottom": 72,
+            "width": 98.625,
+            "height": 30
+          }
+        }
+      ],
+      "legend": {
+        "left": 24,
+        "right": 375,
+        "top": 654,
+        "bottom": 686,
+        "width": 351,
+        "height": 32,
+        "background": "rgb(250, 251, 242)"
+      },
+      "legendPanelOverlap": false,
+      "legendDockOverlap": false,
+      "removedCount": 0,
+      "bodyWidth": 1100
+    },
+    {
+      "width": 1201,
+      "height": 900,
+      "bar": {
+        "left": 24,
+        "right": 1177,
+        "top": 20,
+        "bottom": 94,
+        "width": 1153,
+        "height": 74
+      },
+      "children": [
+        {
+          "name": "brand",
+          "left": 47,
+          "right": 225.5,
+          "top": 35,
+          "bottom": 79,
+          "width": 178.5,
+          "height": 44
+        },
+        {
+          "name": "coordinate top-coordinate",
+          "left": 247.5,
+          "right": 322.46875,
+          "top": 51,
+          "bottom": 63,
+          "width": 74.96875,
+          "height": 12
+        },
+        {
+          "name": "node-strip",
+          "left": 498.546875,
+          "right": 955.203125,
+          "top": 42,
+          "bottom": 72,
+          "width": 456.65625,
+          "height": 30
+        },
+        {
+          "name": "role-pill",
+          "left": 977.203125,
+          "right": 1103,
+          "top": 39.5,
+          "bottom": 74.5,
+          "width": 125.796875,
+          "height": 35
+        },
+        {
+          "name": "help-button",
+          "left": 1125,
+          "right": 1154,
+          "top": 42.5,
+          "bottom": 71.5,
+          "width": 29,
+          "height": 29
+        }
+      ],
+      "overflow": [],
+      "coordinateInBar": true,
+      "nodes": [
+        {
+          "id": "owner",
+          "text": "A 拥有者",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 498.546875,
+            "right": 576.59375,
+            "top": 42,
+            "bottom": 72,
+            "width": 78.046875,
+            "height": 30
+          }
+        },
+        {
+          "id": "cloud",
+          "text": "B 云服务器",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 611.59375,
+            "right": 698.875,
+            "top": 42,
+            "bottom": 72,
+            "width": 87.28125,
+            "height": 30
+          }
+        },
+        {
+          "id": "user",
+          "text": "C 数据用户",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 733.875,
+            "right": 821.578125,
+            "top": 42,
+            "bottom": 72,
+            "width": 87.703125,
+            "height": 30
+          }
+        },
+        {
+          "id": "curator",
+          "text": "D 密钥管理者",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 856.578125,
+            "right": 955.203125,
+            "top": 42,
+            "bottom": 72,
+            "width": 98.625,
+            "height": 30
+          }
+        }
+      ],
+      "legend": {
+        "left": 24,
+        "right": 375,
+        "top": 654,
+        "bottom": 686,
+        "width": 351,
+        "height": 32,
+        "background": "rgb(250, 251, 242)"
+      },
+      "legendPanelOverlap": false,
+      "legendDockOverlap": false,
+      "removedCount": 0,
+      "bodyWidth": 1201
+    },
+    {
+      "width": 1350,
+      "height": 900,
+      "bar": {
+        "left": 24,
+        "right": 1326,
+        "top": 20,
+        "bottom": 94,
+        "width": 1302,
+        "height": 74
+      },
+      "children": [
+        {
+          "name": "brand",
+          "left": 47,
+          "right": 225.5,
+          "top": 35,
+          "bottom": 79,
+          "width": 178.5,
+          "height": 44
+        },
+        {
+          "name": "coordinate top-coordinate",
+          "left": 247.5,
+          "right": 322.46875,
+          "top": 51,
+          "bottom": 63,
+          "width": 74.96875,
+          "height": 12
+        },
+        {
+          "name": "node-strip",
+          "left": 647.546875,
+          "right": 1104.203125,
+          "top": 42,
+          "bottom": 72,
+          "width": 456.65625,
+          "height": 30
+        },
+        {
+          "name": "role-pill",
+          "left": 1126.203125,
+          "right": 1252,
+          "top": 39.5,
+          "bottom": 74.5,
+          "width": 125.796875,
+          "height": 35
+        },
+        {
+          "name": "help-button",
+          "left": 1274,
+          "right": 1303,
+          "top": 42.5,
+          "bottom": 71.5,
+          "width": 29,
+          "height": 29
+        }
+      ],
+      "overflow": [],
+      "coordinateInBar": true,
+      "nodes": [
+        {
+          "id": "owner",
+          "text": "A 拥有者",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 647.546875,
+            "right": 725.59375,
+            "top": 42,
+            "bottom": 72,
+            "width": 78.046875,
+            "height": 30
+          }
+        },
+        {
+          "id": "cloud",
+          "text": "B 云服务器",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 760.59375,
+            "right": 847.875,
+            "top": 42,
+            "bottom": 72,
+            "width": 87.28125,
+            "height": 30
+          }
+        },
+        {
+          "id": "user",
+          "text": "C 数据用户",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 882.875,
+            "right": 970.578125,
+            "top": 42,
+            "bottom": 72,
+            "width": 87.703125,
+            "height": 30
+          }
+        },
+        {
+          "id": "curator",
+          "text": "D 密钥管理者",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 1005.578125,
+            "right": 1104.203125,
+            "top": 42,
+            "bottom": 72,
+            "width": 98.625,
+            "height": 30
+          }
+        }
+      ],
+      "legend": {
+        "left": 24,
+        "right": 375,
+        "top": 654,
+        "bottom": 686,
+        "width": 351,
+        "height": 32,
+        "background": "rgb(250, 251, 242)"
+      },
+      "legendPanelOverlap": false,
+      "legendDockOverlap": false,
+      "removedCount": 0,
+      "bodyWidth": 1350
+    },
+    {
+      "width": 1366,
+      "height": 900,
+      "bar": {
+        "left": 24,
+        "right": 1342,
+        "top": 20,
+        "bottom": 94,
+        "width": 1318,
+        "height": 74
+      },
+      "children": [
+        {
+          "name": "brand",
+          "left": 47,
+          "right": 225.5,
+          "top": 35,
+          "bottom": 79,
+          "width": 178.5,
+          "height": 44
+        },
+        {
+          "name": "top-divider",
+          "left": 247.5,
+          "right": 248.5,
+          "top": 41.5,
+          "bottom": 72.5,
+          "width": 1,
+          "height": 31
+        },
+        {
+          "name": "world-name",
+          "left": 270.5,
+          "right": 474.5,
+          "top": 39,
+          "bottom": 75,
+          "width": 204,
+          "height": 36
+        },
+        {
+          "name": "coordinate top-coordinate",
+          "left": 496.5,
+          "right": 571.46875,
+          "top": 51,
+          "bottom": 63,
+          "width": 74.96875,
+          "height": 12
+        },
+        {
+          "name": "node-strip",
+          "left": 663.546875,
+          "right": 1120.203125,
+          "top": 42,
+          "bottom": 72,
+          "width": 456.65625,
+          "height": 30
+        },
+        {
+          "name": "role-pill",
+          "left": 1142.203125,
+          "right": 1268,
+          "top": 39.5,
+          "bottom": 74.5,
+          "width": 125.796875,
+          "height": 35
+        },
+        {
+          "name": "help-button",
+          "left": 1290,
+          "right": 1319,
+          "top": 42.5,
+          "bottom": 71.5,
+          "width": 29,
+          "height": 29
+        }
+      ],
+      "overflow": [],
+      "coordinateInBar": true,
+      "nodes": [
+        {
+          "id": "owner",
+          "text": "A 拥有者",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 663.546875,
+            "right": 741.59375,
+            "top": 42,
+            "bottom": 72,
+            "width": 78.046875,
+            "height": 30
+          }
+        },
+        {
+          "id": "cloud",
+          "text": "B 云服务器",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 776.59375,
+            "right": 863.875,
+            "top": 42,
+            "bottom": 72,
+            "width": 87.28125,
+            "height": 30
+          }
+        },
+        {
+          "id": "user",
+          "text": "C 数据用户",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 898.875,
+            "right": 986.578125,
+            "top": 42,
+            "bottom": 72,
+            "width": 87.703125,
+            "height": 30
+          }
+        },
+        {
+          "id": "curator",
+          "text": "D 密钥管理者",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 1021.578125,
+            "right": 1120.203125,
+            "top": 42,
+            "bottom": 72,
+            "width": 98.625,
+            "height": 30
+          }
+        }
+      ],
+      "legend": {
+        "left": 24,
+        "right": 375,
+        "top": 654,
+        "bottom": 686,
+        "width": 351,
+        "height": 32,
+        "background": "rgb(250, 251, 242)"
+      },
+      "legendPanelOverlap": false,
+      "legendDockOverlap": false,
+      "removedCount": 0,
+      "bodyWidth": 1366
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "bar": {
+        "left": 24,
+        "right": 1896,
+        "top": 20,
+        "bottom": 94,
+        "width": 1872,
+        "height": 74
+      },
+      "children": [
+        {
+          "name": "brand",
+          "left": 47,
+          "right": 225.5,
+          "top": 35,
+          "bottom": 79,
+          "width": 178.5,
+          "height": 44
+        },
+        {
+          "name": "top-divider",
+          "left": 247.5,
+          "right": 248.5,
+          "top": 41.5,
+          "bottom": 72.5,
+          "width": 1,
+          "height": 31
+        },
+        {
+          "name": "world-name",
+          "left": 270.5,
+          "right": 474.5,
+          "top": 39,
+          "bottom": 75,
+          "width": 204,
+          "height": 36
+        },
+        {
+          "name": "coordinate top-coordinate",
+          "left": 496.5,
+          "right": 571.46875,
+          "top": 51,
+          "bottom": 63,
+          "width": 74.96875,
+          "height": 12
+        },
+        {
+          "name": "node-strip",
+          "left": 1217.546875,
+          "right": 1674.203125,
+          "top": 42,
+          "bottom": 72,
+          "width": 456.65625,
+          "height": 30
+        },
+        {
+          "name": "role-pill",
+          "left": 1696.203125,
+          "right": 1822,
+          "top": 39.5,
+          "bottom": 74.5,
+          "width": 125.796875,
+          "height": 35
+        },
+        {
+          "name": "help-button",
+          "left": 1844,
+          "right": 1873,
+          "top": 42.5,
+          "bottom": 71.5,
+          "width": 29,
+          "height": 29
+        }
+      ],
+      "overflow": [],
+      "coordinateInBar": true,
+      "nodes": [
+        {
+          "id": "owner",
+          "text": "A 拥有者",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 1217.546875,
+            "right": 1295.59375,
+            "top": 42,
+            "bottom": 72,
+            "width": 78.046875,
+            "height": 30
+          }
+        },
+        {
+          "id": "cloud",
+          "text": "B 云服务器",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 1330.59375,
+            "right": 1417.875,
+            "top": 42,
+            "bottom": 72,
+            "width": 87.28125,
+            "height": 30
+          }
+        },
+        {
+          "id": "user",
+          "text": "C 数据用户",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 1452.875,
+            "right": 1540.578125,
+            "top": 42,
+            "bottom": 72,
+            "width": 87.703125,
+            "height": 30
+          }
+        },
+        {
+          "id": "curator",
+          "text": "D 密钥管理者",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 1575.578125,
+            "right": 1674.203125,
+            "top": 42,
+            "bottom": 72,
+            "width": 98.625,
+            "height": 30
+          }
+        }
+      ],
+      "legend": {
+        "left": 24,
+        "right": 375,
+        "top": 834,
+        "bottom": 866,
+        "width": 351,
+        "height": 32,
+        "background": "rgb(250, 251, 242)"
+      },
+      "legendPanelOverlap": false,
+      "legendDockOverlap": false,
+      "removedCount": 0,
+      "bodyWidth": 1920
+    },
+    {
+      "width": 1366,
+      "height": 600,
+      "bar": {
+        "left": 24,
+        "right": 1342,
+        "top": 14,
+        "bottom": 83,
+        "width": 1318,
+        "height": 69
+      },
+      "children": [
+        {
+          "name": "brand",
+          "left": 47,
+          "right": 225.5,
+          "top": 26.5,
+          "bottom": 70.5,
+          "width": 178.5,
+          "height": 44
+        },
+        {
+          "name": "top-divider",
+          "left": 247.5,
+          "right": 248.5,
+          "top": 33,
+          "bottom": 64,
+          "width": 1,
+          "height": 31
+        },
+        {
+          "name": "world-name",
+          "left": 270.5,
+          "right": 474.5,
+          "top": 30.5,
+          "bottom": 66.5,
+          "width": 204,
+          "height": 36
+        },
+        {
+          "name": "coordinate top-coordinate",
+          "left": 496.5,
+          "right": 571.46875,
+          "top": 42.5,
+          "bottom": 54.5,
+          "width": 74.96875,
+          "height": 12
+        },
+        {
+          "name": "node-strip",
+          "left": 663.546875,
+          "right": 1120.203125,
+          "top": 33.5,
+          "bottom": 63.5,
+          "width": 456.65625,
+          "height": 30
+        },
+        {
+          "name": "role-pill",
+          "left": 1142.203125,
+          "right": 1268,
+          "top": 31,
+          "bottom": 66,
+          "width": 125.796875,
+          "height": 35
+        },
+        {
+          "name": "help-button",
+          "left": 1290,
+          "right": 1319,
+          "top": 34,
+          "bottom": 63,
+          "width": 29,
+          "height": 29
+        }
+      ],
+      "overflow": [],
+      "coordinateInBar": true,
+      "nodes": [
+        {
+          "id": "owner",
+          "text": "A 拥有者",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 663.546875,
+            "right": 741.59375,
+            "top": 33.5,
+            "bottom": 63.5,
+            "width": 78.046875,
+            "height": 30
+          }
+        },
+        {
+          "id": "cloud",
+          "text": "B 云服务器",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 776.59375,
+            "right": 863.875,
+            "top": 33.5,
+            "bottom": 63.5,
+            "width": 87.28125,
+            "height": 30
+          }
+        },
+        {
+          "id": "user",
+          "text": "C 数据用户",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 898.875,
+            "right": 986.578125,
+            "top": 33.5,
+            "bottom": 63.5,
+            "width": 87.703125,
+            "height": 30
+          }
+        },
+        {
+          "id": "curator",
+          "text": "D 密钥管理者",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 1021.578125,
+            "right": 1120.203125,
+            "top": 33.5,
+            "bottom": 63.5,
+            "width": 98.625,
+            "height": 30
+          }
+        }
+      ],
+      "legend": {
+        "left": 24,
+        "right": 375,
+        "top": 379,
+        "bottom": 411,
+        "width": 351,
+        "height": 32,
+        "background": "rgb(250, 251, 242)"
+      },
+      "legendPanelOverlap": false,
+      "legendDockOverlap": false,
+      "removedCount": 0,
+      "bodyWidth": 1366
+    },
+    {
+      "width": 901,
+      "height": 600,
+      "bar": {
+        "left": 24,
+        "right": 877,
+        "top": 14,
+        "bottom": 83,
+        "width": 853,
+        "height": 69
+      },
+      "children": [
+        {
+          "name": "brand",
+          "left": 47,
+          "right": 225.5,
+          "top": 26.5,
+          "bottom": 70.5,
+          "width": 178.5,
+          "height": 44
+        },
+        {
+          "name": "coordinate top-coordinate",
+          "left": 238.5,
+          "right": 313.46875,
+          "top": 42.5,
+          "bottom": 54.5,
+          "width": 74.96875,
+          "height": 12
+        },
+        {
+          "name": "role-pill",
+          "left": 686.203125,
+          "right": 812,
+          "top": 31,
+          "bottom": 66,
+          "width": 125.796875,
+          "height": 35
+        },
+        {
+          "name": "help-button",
+          "left": 825,
+          "right": 854,
+          "top": 34,
+          "bottom": 63,
+          "width": 29,
+          "height": 29
+        }
+      ],
+      "overflow": [],
+      "coordinateInBar": true,
+      "nodes": [
+        {
+          "id": "owner",
+          "text": "A 拥有者",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "id": "cloud",
+          "text": "B 云服务器",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "id": "user",
+          "text": "C 数据用户",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "id": "curator",
+          "text": "D 密钥管理者",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "legend": {
+        "left": 24,
+        "right": 375,
+        "top": 379,
+        "bottom": 411,
+        "width": 351,
+        "height": 32,
+        "background": "rgb(250, 251, 242)"
+      },
+      "legendPanelOverlap": false,
+      "legendDockOverlap": false,
+      "removedCount": 0,
+      "bodyWidth": 901
+    },
+    {
+      "width": 390,
+      "height": 600,
+      "bar": {
+        "left": 12,
+        "right": 378,
+        "top": 14,
+        "bottom": 79,
+        "width": 366,
+        "height": 65
+      },
+      "children": [
+        {
+          "name": "brand",
+          "left": 25,
+          "right": 203.5,
+          "top": 27,
+          "bottom": 66,
+          "width": 178.5,
+          "height": 39
+        },
+        {
+          "name": "coordinate top-coordinate",
+          "left": 77,
+          "right": 144.421875,
+          "top": 58,
+          "bottom": 68,
+          "width": 67.421875,
+          "height": 10
+        },
+        {
+          "name": "role-pill",
+          "left": 226.984375,
+          "right": 323,
+          "top": 32.5,
+          "bottom": 60.5,
+          "width": 96.015625,
+          "height": 28
+        },
+        {
+          "name": "help-button",
+          "left": 336,
+          "right": 365,
+          "top": 32,
+          "bottom": 61,
+          "width": 29,
+          "height": 29
+        }
+      ],
+      "overflow": [],
+      "coordinateInBar": true,
+      "nodes": [
+        {
+          "id": "owner",
+          "text": "A 拥有者",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "id": "cloud",
+          "text": "B 云服务器",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "id": "user",
+          "text": "C 数据用户",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "id": "curator",
+          "text": "D 密钥管理者",
+          "parent": "node-strip",
+          "style": [
+            "rgb(238, 241, 232)",
+            "8px 10px",
+            "5px",
+            "10px",
+            "flex"
+          ],
+          "rect": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "legend": {
+        "left": 12,
+        "right": 218,
+        "top": 408,
+        "bottom": 440,
+        "width": 206,
+        "height": 32,
+        "background": "rgb(250, 251, 242)"
+      },
+      "legendPanelOverlap": false,
+      "legendDockOverlap": false,
+      "removedCount": 0,
+      "bodyWidth": 390
+    }
+  ],
+  "errors": []
+}

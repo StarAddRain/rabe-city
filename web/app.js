@@ -1,5 +1,5 @@
 (() => {
-    const $ = id => document.getElementById(id), roles = { owner: '数据拥有者', user: '数据用户', cloud: '云服务器', curator: 'Key Curator' }, letters = { owner: 'A', cloud: 'B', user: 'C', curator: 'D' };
+    const $ = id => document.getElementById(id), roles = { owner: '数据拥有者', user: '数据用户', cloud: '云服务器', curator: '密钥管理者' }, letters = { owner: 'A', cloud: 'B', user: 'C', curator: 'D' };
     let state = null, selected = null, dock = 'messages', busy = false, timer = null, lastMessages = '', lastSamples = '', lastVehicles = '', csrf = '';
     let inbox = [], inboxVehicle = null, selectionVersion = 0, inboxRequest = 0;
     const reasons = { NOT_REGISTERED_AT_ENCRYPTION: '该车辆在此密文生成之后才注册，不能解密历史密文。', RECEIVER_POLICY: '访问被拒绝：当前车辆不满足发送方的访问策略。', SENDER_POLICY: '访问被拒绝：发送方不满足你指定的验证策略。', SENDER_VERIFICATION: '发送方配对验证未通过。', REVOKED: '当前车辆已被撤销：C 本地解密后的完整性校验失败。', INTEGRITY: '本地完整性校验失败，密文或密钥不匹配。' };

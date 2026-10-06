@@ -7,6 +7,7 @@
     "user: native map aspect, full view and 16 registered vehicles",
     "user: click, single cabin, stable driver, movement, pause, day/night and mobile fit",
     "curator: native map aspect, full view and 16 registered vehicles",
+    "curator: named registration, 50-slot dictionary, select deregistered car on map and rejoin",
     "identical vehicle coordinates in all four roles at shared paused time",
     "no JavaScript page errors"
   ],
