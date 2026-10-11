@@ -68,7 +68,7 @@ try:
  # Node authority is enforced in the backend, including direct HTTP bypasses.
  for role in ['owner','user','cloud']:
   local(role,'register',{'name':'denied','role':'user','attributes':[0]},403);local(role,'deregister',{'vehicle':0},403);local(role,'rejoin',{'vehicle':0},403)
- for path in ['send','decrypt','trace','revoke','leak','motion/set']:local('curator',path,{},403)
+ for path in ['send','decrypt','revoke','leak','motion/set']:local('curator',path,{},403)
  request(BASE+3,'/node/submit',{},'bad-token',403);CHECKS.append('invalid node token denied')
  full=[0,1,2,3,4]
  names=['特斯拉','新能源','授权通行','市政服务','车队成员']
@@ -96,13 +96,13 @@ try:
  register('user',full,'user-late');decrypt(m3,4,False,reason='NOT_REGISTERED_AT_ENCRYPTION');m5,t5=send();decrypt(m5,4,text=t5);decrypt(m5,1,text=t5);decrypt(m3,1,text=t3)
  db=json.loads((OUT/'data/curator/registry-state.json').read_text());check(db['ctr']==5 and [None if x is None else x.split('-')[1] for x in db['latest']]==['4','2','0',None],'Section6 latest completed blocks at ctr5');check(db['D1'][2]['0']['vehicle']==4 and db['D1'][2]['1']['vehicle']==1,'D1 partial overwrite');check('1:2' in db['D2'] and '4:2' not in db['D2'],'D2 helper issued only for completed block')
  local('owner','revoke',{'id':m5['id'],'target':1});decrypt(m5,1,False,reason='REVOKED');decrypt(m5,4,text=t5)
- sample=local('user','leak',{'source':1});tr=local('cloud','trace',{'sample':sample['id']});check(tr['identity']==2,'trace real copied secret identity')
+ sample=local('user','leak',{'source':1});tr=local('cloud','trace',{'sample':sample['id']});check(tr['identity']==2,'trace real copied secret identity');dt=local('curator','trace',{'sample':sample['id']});check(dt['identity']==2 and dt['slot']==1,'curator traces and receives map identity');local('curator','trace',{'sample':'missing'},503)
  local('curator','deregister',{'vehicle':1});check(state('curator')['ctr']==5 and state('curator')['enrolled']==4,'deregister does not recycle counter');local('user','decrypt',{'id':m3['id'],'receiver':1,'reverse':'A1'},403)
  register('user',full,'user-after-deregister');register('owner',full,'owner-late');register('user',full,'user-final');m8,t8=send()
  for receiver in [4,5,7]:decrypt(m8,receiver,text=t8)
  local('user','decrypt',{'id':m8['id'],'receiver':1,'reverse':'A1'},403);decrypt(m5,4,text=t5)
  local('owner','revoke',{'id':m8['id'],'target':5});decrypt(m8,5,False,reason='REVOKED');decrypt(m8,4,text=t8);decrypt(m8,7,text=t8)
- check(local('cloud','trace',{'sample':sample['id']})['identity']==2,'trace after deregistration')
+ check(local('cloud','trace',{'sample':sample['id']})['identity']==2,'trace after deregistration');check(local('curator','trace',{'sample':sample['id']})['identity']==2,'curator traces deregistered identity')
  local('curator','register',{'name':'overflow','role':'user','attributes':full},409)
  # Rejoin at full capacity must restore aggregates without restoring another removed member.
  local('curator','deregister',{'vehicle':2})

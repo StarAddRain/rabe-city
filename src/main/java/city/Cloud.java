@@ -191,7 +191,7 @@ public final class Cloud {
   Object locked(String path, Map<String, Object> b, String role) throws Exception {
     seen.put(role, System.currentTimeMillis());
     if (path.equals("/state")) return state();
-    if (role.equals("curator")) throw new SecurityException("D 不提供云端数据操作");
+    if (role.equals("curator") && !path.equals("/trace")) throw new SecurityException("D 仅可执行追踪操作");
     if (!ready) throw new IllegalStateException(phase);
     if (path.equals("/register") || path.equals("/deregister") || path.equals("/enroll"))
       throw new SecurityException("仅 D 可管理车辆注册/注销");

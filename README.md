@@ -35,7 +35,7 @@ sh start-local.sh
 
 | 节点 | 本机浏览器地址 | 用途 |
 |---|---|---|
-| D · Key Curator | http://localhost:8083 | **先在这里注册车辆**，也在这里注销 |
+| D · Key Curator | http://localhost:8083 | **先在这里注册车辆**，也可注销、重新加入和泄露追踪 |
 | A · 拥有者 | http://localhost:8081 | 加密发送、指定密文撤销 |
 | B · 云服务器 | http://localhost:8080 | 存储、转换、追踪、统一仿真时钟 |
 | C · 数据用户 | http://localhost:8082 | 本地解密、车辆专属明文、泄露样本 |
@@ -142,3 +142,5 @@ python3 tests/integration.py --output /你的路径/rabe-test-run --base-port 82
 - `web/app.js`、`web/cockpit.js`：四端控制台与保留的车内视角。
 
 本项目是研究演示。第 6 节的编译结构不自动修复原项目的发送方认证漏洞，也不自动赋予修改后方案原论文的安全证明；具体已知问题保留在 [SECURITY_FINDINGS.md](docs/SECURITY_FINDINGS.md)。
+
+Key Curator 的“泄露追踪”页可选择 C 创建的泄露样本，由 B 执行 Trace 验证；成功后显示身份并在地图定位对应车辆，也支持已注销车辆。D 不生成泄露样本，仍无发送、解密和密文撤销权限。

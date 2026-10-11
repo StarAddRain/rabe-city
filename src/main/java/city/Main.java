@@ -165,7 +165,11 @@ public final class Main {
           throw new SecurityException("Cross origin request forbidden");
         Map<String, Object> b = body(e);
         Object result;
-        if (curator != null) result = curator.local(path.substring(4), b);
+        if (curator != null) {
+          if (path.equals("/api/trace"))
+            result = Client.request(config.getProperty("cloud") + "/node/trace", config.getProperty("token"), b);
+          else result = curator.local(path.substring(4), b);
+        }
         else if (cloud != null) {
           if (!path.equals("/api/trace") && !path.equals("/api/motion/set"))
             throw new SecurityException("B 只提供云端操作");
