@@ -1,0 +1,12 @@
+{
+  "last": {
+    "kind": "pipeline",
+    "ok": true,
+    "at": "2026-10-13T02:47:25.911437+00:00",
+    "trial": 361,
+    "policy": "P01",
+    "wallMs": 509.58062475547194
+  },
+  "records": 822,
+  "elapsedSeconds": 1232.9236342906952
+}

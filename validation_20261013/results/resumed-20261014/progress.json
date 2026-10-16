@@ -1,0 +1,17 @@
+{
+  "last": {
+    "kind": "trace",
+    "ok": true,
+    "segment": "resumed",
+    "at": "2026-10-14T09:42:43.400067+00:00",
+    "source": 99,
+    "identified": 99,
+    "sample": "f72cd1f1",
+    "tracer": "curator",
+    "scenario": "key_copy",
+    "traceMs": 423.854459,
+    "wallMs": 432.846125215292
+  },
+  "records": 7974,
+  "elapsedSeconds": 4971.504949092865
+}

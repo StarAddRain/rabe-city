@@ -1,0 +1,22 @@
+{
+  "profile": "full",
+  "seed": 20261013,
+  "registeredVehicles": 100,
+  "capacity": 128,
+  "attributes": 50,
+  "continuousTrials": 1000,
+  "bilateralPairs": 52,
+  "revocationRounds": 5,
+  "revocationsPerRound": 20,
+  "traceSamples": 100,
+  "hostPlatform": "macOS-26.4.1-arm64-arm-64bit",
+  "cpu": "arm",
+  "logicalCpus": 10,
+  "java": "openjdk version \"1.8.0_492\"\nOpenJDK Runtime Environment (Temurin)(build 1.8.0_492-b09)\nOpenJDK 64-Bit Server VM (Temurin)(build 25.492-b09, mixed mode)",
+  "jarSha256": "9514df00fdd448760e5c01670541b173537173f3dced5eb01d42254aaf80454d",
+  "gitCommit": "dec12e7275a8846782a8de45a3c60f0e8a5fffe9",
+  "transport": "four independent JVMs, loopback HTTP, one sequential request stream",
+  "payloadBytes": 1024,
+  "startedUtc": "2026-10-13T02:26:53.080659+00:00",
+  "setupCache": "public CRS reused; no registry, samples or vehicle private keys imported"
+}

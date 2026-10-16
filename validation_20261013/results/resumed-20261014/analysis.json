@@ -1,0 +1,303 @@
+{
+  "acceptancePassed": true,
+  "complete": true,
+  "timingScope": "registration from original run; pipeline phases from resumed segment only",
+  "profile": "full",
+  "metrics": {
+    "registered": 100,
+    "registration": {
+      "numerator": 100,
+      "denominator": 100,
+      "percent": 100.0
+    },
+    "pipeline": {
+      "numerator": 1361,
+      "denominator": 1361,
+      "percent": 100.0
+    },
+    "authorizedRecovery": {
+      "numerator": 250,
+      "denominator": 250,
+      "percent": 100.0
+    },
+    "unauthorizedRecovery": {
+      "numerator": 0,
+      "denominator": 250,
+      "percent": 0.0
+    },
+    "bilateral": {
+      "0": {
+        "numerator": 13,
+        "denominator": 13,
+        "percent": 100.0
+      },
+      "1": {
+        "numerator": 13,
+        "denominator": 13,
+        "percent": 100.0
+      },
+      "2": {
+        "numerator": 13,
+        "denominator": 13,
+        "percent": 100.0
+      },
+      "3": {
+        "numerator": 13,
+        "denominator": 13,
+        "percent": 100.0
+      }
+    },
+    "revocationOperations": {
+      "numerator": 2000,
+      "denominator": 2000,
+      "percent": 100.0
+    },
+    "distinctRevoked": 25,
+    "revokedDenial": {
+      "numerator": 2000,
+      "denominator": 2000,
+      "percent": 100.0
+    },
+    "remainingRecovery": {
+      "numerator": 500,
+      "denominator": 500,
+      "percent": 100.0
+    },
+    "trace": {
+      "numerator": 100,
+      "denominator": 100,
+      "percent": 100.0
+    },
+    "distinctTracedIdentities": 50,
+    "traceScenarios": {
+      "key_copy": 34,
+      "exposure": 33,
+      "unauthorized_sharing": 33
+    },
+    "revocationRounds": 100,
+    "uninterruptedPipeline": {
+      "numerator": 1000,
+      "denominator": 1000,
+      "percent": 100.0
+    },
+    "priorPipelineCount": 361
+  },
+  "criteria": {
+    "scale": true,
+    "policies": true,
+    "pipeline": true,
+    "authorized": true,
+    "unauthorized": true,
+    "bilateral": true,
+    "revocation": true,
+    "trace": true
+  },
+  "timings": {
+    "registration.keygenMs": {
+      "n": 100,
+      "mean": 2193.09908042,
+      "median": 2186.2988955,
+      "p95": 2242.626041,
+      "max": 2446.620709
+    },
+    "registration.registrationMs": {
+      "n": 100,
+      "mean": 4502.13131133,
+      "median": 3497.7949165,
+      "p95": 6798.703834,
+      "max": 60314.348292
+    },
+    "registration.wallMs": {
+      "n": 100,
+      "mean": 7771.13081254065,
+      "median": 6780.763146001846,
+      "p95": 10030.16058402136,
+      "max": 63581.24912530184
+    },
+    "continuous.encryptMs": {
+      "n": 1000,
+      "mean": 997.400236661,
+      "median": 1026.6499374999999,
+      "p95": 1643.592458,
+      "max": 1812.6605
+    },
+    "continuous.transformMs": {
+      "n": 1000,
+      "mean": 150.069663189,
+      "median": 140.8795,
+      "p95": 254.187584,
+      "max": 453.730708
+    },
+    "continuous.decryptMs": {
+      "n": 1000,
+      "mean": 1.149201075,
+      "median": 0.874187,
+      "p95": 2.315708,
+      "max": 53.907166
+    },
+    "continuous.wallMs": {
+      "n": 1000,
+      "mean": 182.68359561776742,
+      "median": 179.4551459606737,
+      "p95": 286.7359588854015,
+      "max": 500.9108753874898
+    },
+    "pipeline.wallMs": {
+      "n": 1000,
+      "mean": 1454.1917384993285,
+      "median": 1447.3323749843985,
+      "p95": 2234.1926670633256,
+      "max": 2819.9205421842635
+    },
+    "revoke.wallMs": {
+      "n": 2000,
+      "mean": 1372.6607999033295,
+      "median": 1443.729625083506,
+      "p95": 1634.213666897267,
+      "max": 4377.854750026017
+    },
+    "trace.traceMs": {
+      "n": 100,
+      "mean": 428.62518838,
+      "median": 427.87904149999997,
+      "p95": 441.611458,
+      "max": 631.682583
+    },
+    "trace.wallMs": {
+      "n": 100,
+      "mean": 436.92070795223117,
+      "median": 435.2341874036938,
+      "p95": 448.56854202225804,
+      "max": 645.6211660988629
+    }
+  },
+  "perPolicy": [
+    {
+      "id": "P01",
+      "rows": 5,
+      "distinctAttributes": 5,
+      "structure": "AND",
+      "expression": "A1 AND A2 AND A3 AND A4 AND A5",
+      "completed": 100,
+      "correct": 100,
+      "encryptMs": 323.28395591,
+      "transformMs": 77.94467126,
+      "decryptMs": 1.04481832
+    },
+    {
+      "id": "P02",
+      "rows": 10,
+      "distinctAttributes": 10,
+      "structure": "AND_OR",
+      "expression": "A1 AND (A2 OR A3) AND (A4 OR A5) AND (A6 OR A7) AND (A8 OR A9) AND A10",
+      "completed": 100,
+      "correct": 100,
+      "encryptMs": 481.34577292,
+      "transformMs": 84.27745718999999,
+      "decryptMs": 1.6906879
+    },
+    {
+      "id": "P03",
+      "rows": 15,
+      "distinctAttributes": 15,
+      "structure": "AND",
+      "expression": "A1 AND A2 AND A3 AND A4 AND A5 AND A6 AND A7 AND A8 AND A9 AND A10 AND A11 AND A12 AND A13 AND A14 AND A15",
+      "completed": 100,
+      "correct": 100,
+      "encryptMs": 624.55435585,
+      "transformMs": 125.67898626,
+      "decryptMs": 1.1117704
+    },
+    {
+      "id": "P04",
+      "rows": 20,
+      "distinctAttributes": 20,
+      "structure": "AND_OR",
+      "expression": "A1 AND (A2 OR A3) AND (A4 OR A5) AND (A6 OR A7) AND (A8 OR A9) AND (A10 OR A11) AND (A12 OR A13) AND (A14 OR A15) AND (A16 OR A17) AND (A18 OR A19) AND A20",
+      "completed": 100,
+      "correct": 100,
+      "encryptMs": 770.79126045,
+      "transformMs": 108.34027663,
+      "decryptMs": 1.07452497
+    },
+    {
+      "id": "P05",
+      "rows": 25,
+      "distinctAttributes": 25,
+      "structure": "AND",
+      "expression": "A1 AND A2 AND A3 AND A4 AND A5 AND A6 AND A7 AND A8 AND A9 AND A10 AND A11 AND A12 AND A13 AND A14 AND A15 AND A16 AND A17 AND A18 AND A19 AND A20 AND A21 AND A22 AND A23 AND A24 AND A25",
+      "completed": 100,
+      "correct": 100,
+      "encryptMs": 924.4418108,
+      "transformMs": 170.79823375,
+      "decryptMs": 1.06018044
+    },
+    {
+      "id": "P06",
+      "rows": 30,
+      "distinctAttributes": 30,
+      "structure": "AND_OR",
+      "expression": "A1 AND (A2 OR A3) AND (A4 OR A5) AND (A6 OR A7) AND (A8 OR A9) AND (A10 OR A11) AND (A12 OR A13) AND (A14 OR A15) AND (A16 OR A17) AND (A18 OR A19) AND (A20 OR A21) AND (A22 OR A23) AND (A24 OR A25) AND (A26 OR A27) AND (A28 OR A29) AND A30",
+      "completed": 100,
+      "correct": 100,
+      "encryptMs": 1076.42821413,
+      "transformMs": 132.00146417,
+      "decryptMs": 1.08338833
+    },
+    {
+      "id": "P07",
+      "rows": 35,
+      "distinctAttributes": 35,
+      "structure": "AND",
+      "expression": "A1 AND A2 AND A3 AND A4 AND A5 AND A6 AND A7 AND A8 AND A9 AND A10 AND A11 AND A12 AND A13 AND A14 AND A15 AND A16 AND A17 AND A18 AND A19 AND A20 AND A21 AND A22 AND A23 AND A24 AND A25 AND A26 AND A27 AND A28 AND A29 AND A30 AND A31 AND A32 AND A33 AND A34 AND A35",
+      "completed": 100,
+      "correct": 100,
+      "encryptMs": 1225.9089979,
+      "transformMs": 212.77155835,
+      "decryptMs": 1.0787617
+    },
+    {
+      "id": "P08",
+      "rows": 40,
+      "distinctAttributes": 40,
+      "structure": "AND_OR",
+      "expression": "A1 AND (A2 OR A3) AND (A4 OR A5) AND (A6 OR A7) AND (A8 OR A9) AND (A10 OR A11) AND (A12 OR A13) AND (A14 OR A15) AND (A16 OR A17) AND (A18 OR A19) AND (A20 OR A21) AND (A22 OR A23) AND (A24 OR A25) AND (A26 OR A27) AND (A28 OR A29) AND (A30 OR A31) AND (A32 OR A33) AND (A34 OR A35) AND (A36 OR A37) AND (A38 OR A39) AND A40",
+      "completed": 100,
+      "correct": 100,
+      "encryptMs": 1370.31536911,
+      "transformMs": 155.08288007,
+      "decryptMs": 1.05140499
+    },
+    {
+      "id": "P09",
+      "rows": 45,
+      "distinctAttributes": 45,
+      "structure": "AND",
+      "expression": "A1 AND A2 AND A3 AND A4 AND A5 AND A6 AND A7 AND A8 AND A9 AND A10 AND A11 AND A12 AND A13 AND A14 AND A15 AND A16 AND A17 AND A18 AND A19 AND A20 AND A21 AND A22 AND A23 AND A24 AND A25 AND A26 AND A27 AND A28 AND A29 AND A30 AND A31 AND A32 AND A33 AND A34 AND A35 AND A36 AND A37 AND A38 AND A39 AND A40 AND A41 AND A42 AND A43 AND A44 AND A45",
+      "completed": 100,
+      "correct": 100,
+      "encryptMs": 1515.93821872,
+      "transformMs": 256.26737293,
+      "decryptMs": 1.05349912
+    },
+    {
+      "id": "P10",
+      "rows": 50,
+      "distinctAttributes": 50,
+      "structure": "AND_OR",
+      "expression": "A1 AND (A2 OR A3) AND (A4 OR A5) AND (A6 OR A7) AND (A8 OR A9) AND (A10 OR A11) AND (A12 OR A13) AND (A14 OR A15) AND (A16 OR A17) AND (A18 OR A19) AND (A20 OR A21) AND (A22 OR A23) AND (A24 OR A25) AND (A26 OR A27) AND (A28 OR A29) AND (A30 OR A31) AND (A32 OR A33) AND (A34 OR A35) AND (A36 OR A37) AND (A38 OR A39) AND (A40 OR A41) AND (A42 OR A43) AND (A44 OR A45) AND (A46 OR A47) AND (A48 OR A49) AND A50",
+      "completed": 100,
+      "correct": 100,
+      "encryptMs": 1660.99441082,
+      "transformMs": 177.53373128,
+      "decryptMs": 1.24297458
+    }
+  ],
+  "evidenceSha256": "9eb9be26198bf4e414b01f9110774cb1cc0c4b637efb4b4bb0a19db1dad79146",
+  "extensionEvidenceSha256": null,
+  "notes": [
+    "Counts are empirical outcomes, not a protocol security proof.",
+    "Revocation covers 100 independent ciphertext rounds with 20 targets per round. Resumed runs execute all rounds in one segment.",
+    "Tracing is white-box scalar-copy tracing; categories have identical cryptographic input form."
+  ]
+}

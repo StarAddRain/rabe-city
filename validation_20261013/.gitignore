@@ -1,0 +1,5 @@
+# Retain locally for reproducibility; do not publish experiment secrets or QA renders.
+results/*/private-runtime/
+results/*/config/
+qa/
+__pycache__/

@@ -1,0 +1,72 @@
+[
+  {
+    "id": "P01",
+    "rows": 5,
+    "distinctAttributes": 5,
+    "structure": "AND",
+    "expression": "A1 AND A2 AND A3 AND A4 AND A5"
+  },
+  {
+    "id": "P02",
+    "rows": 10,
+    "distinctAttributes": 10,
+    "structure": "AND_OR",
+    "expression": "A1 AND (A2 OR A3) AND (A4 OR A5) AND (A6 OR A7) AND (A8 OR A9) AND A10"
+  },
+  {
+    "id": "P03",
+    "rows": 15,
+    "distinctAttributes": 15,
+    "structure": "AND",
+    "expression": "A1 AND A2 AND A3 AND A4 AND A5 AND A6 AND A7 AND A8 AND A9 AND A10 AND A11 AND A12 AND A13 AND A14 AND A15"
+  },
+  {
+    "id": "P04",
+    "rows": 20,
+    "distinctAttributes": 20,
+    "structure": "AND_OR",
+    "expression": "A1 AND (A2 OR A3) AND (A4 OR A5) AND (A6 OR A7) AND (A8 OR A9) AND (A10 OR A11) AND (A12 OR A13) AND (A14 OR A15) AND (A16 OR A17) AND (A18 OR A19) AND A20"
+  },
+  {
+    "id": "P05",
+    "rows": 25,
+    "distinctAttributes": 25,
+    "structure": "AND",
+    "expression": "A1 AND A2 AND A3 AND A4 AND A5 AND A6 AND A7 AND A8 AND A9 AND A10 AND A11 AND A12 AND A13 AND A14 AND A15 AND A16 AND A17 AND A18 AND A19 AND A20 AND A21 AND A22 AND A23 AND A24 AND A25"
+  },
+  {
+    "id": "P06",
+    "rows": 30,
+    "distinctAttributes": 30,
+    "structure": "AND_OR",
+    "expression": "A1 AND (A2 OR A3) AND (A4 OR A5) AND (A6 OR A7) AND (A8 OR A9) AND (A10 OR A11) AND (A12 OR A13) AND (A14 OR A15) AND (A16 OR A17) AND (A18 OR A19) AND (A20 OR A21) AND (A22 OR A23) AND (A24 OR A25) AND (A26 OR A27) AND (A28 OR A29) AND A30"
+  },
+  {
+    "id": "P07",
+    "rows": 35,
+    "distinctAttributes": 35,
+    "structure": "AND",
+    "expression": "A1 AND A2 AND A3 AND A4 AND A5 AND A6 AND A7 AND A8 AND A9 AND A10 AND A11 AND A12 AND A13 AND A14 AND A15 AND A16 AND A17 AND A18 AND A19 AND A20 AND A21 AND A22 AND A23 AND A24 AND A25 AND A26 AND A27 AND A28 AND A29 AND A30 AND A31 AND A32 AND A33 AND A34 AND A35"
+  },
+  {
+    "id": "P08",
+    "rows": 40,
+    "distinctAttributes": 40,
+    "structure": "AND_OR",
+    "expression": "A1 AND (A2 OR A3) AND (A4 OR A5) AND (A6 OR A7) AND (A8 OR A9) AND (A10 OR A11) AND (A12 OR A13) AND (A14 OR A15) AND (A16 OR A17) AND (A18 OR A19) AND (A20 OR A21) AND (A22 OR A23) AND (A24 OR A25) AND (A26 OR A27) AND (A28 OR A29) AND (A30 OR A31) AND (A32 OR A33) AND (A34 OR A35) AND (A36 OR A37) AND (A38 OR A39) AND A40"
+  },
+  {
+    "id": "P09",
+    "rows": 45,
+    "distinctAttributes": 45,
+    "structure": "AND",
+    "expression": "A1 AND A2 AND A3 AND A4 AND A5 AND A6 AND A7 AND A8 AND A9 AND A10 AND A11 AND A12 AND A13 AND A14 AND A15 AND A16 AND A17 AND A18 AND A19 AND A20 AND A21 AND A22 AND A23 AND A24 AND A25 AND A26 AND A27 AND A28 AND A29 AND A30 AND A31 AND A32 AND A33 AND A34 AND A35 AND A36 AND A37 AND A38 AND A39 AND A40 AND A41 AND A42 AND A43 AND A44 AND A45"
+  },
+  {
+    "id": "P10",
+    "rows": 50,
+    "distinctAttributes": 50,
+    "structure": "AND_OR",
+    "expression": "A1 AND (A2 OR A3) AND (A4 OR A5) AND (A6 OR A7) AND (A8 OR A9) AND (A10 OR A11) AND (A12 OR A13) AND (A14 OR A15) AND (A16 OR A17) AND (A18 OR A19) AND (A20 OR A21) AND (A22 OR A23) AND (A24 OR A25) AND (A26 OR A27) AND (A28 OR A29) AND (A30 OR A31) AND (A32 OR A33) AND (A34 OR A35) AND (A36 OR A37) AND (A38 OR A39) AND (A40 OR A41) AND (A42 OR A43) AND (A44 OR A45) AND (A46 OR A47) AND (A48 OR A49) AND A50"
+  }
+]

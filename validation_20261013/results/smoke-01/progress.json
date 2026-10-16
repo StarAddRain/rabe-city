@@ -1,0 +1,16 @@
+{
+  "last": {
+    "kind": "trace",
+    "ok": true,
+    "at": "2026-10-13T02:26:26.384664+00:00",
+    "source": 6,
+    "identified": 6,
+    "sample": "ad4f1b58",
+    "tracer": "cloud",
+    "scenario": "unauthorized_sharing",
+    "traceMs": 60.991083,
+    "wallMs": 66.04416575282812
+  },
+  "records": 78,
+  "elapsedSeconds": 35.11676812171936
+}

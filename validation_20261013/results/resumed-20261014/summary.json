@@ -1,0 +1,183 @@
+{
+  "profile": "full",
+  "complete": true,
+  "fatal": null,
+  "elapsedSeconds": 4972.021327018738,
+  "counts": {
+    "bilateral": {
+      "total": 52,
+      "correct": 52
+    },
+    "continuous": {
+      "total": 1361,
+      "correct": 1361
+    },
+    "pipeline": {
+      "total": 1361,
+      "correct": 1361
+    },
+    "policy": {
+      "total": 500,
+      "correct": 500
+    },
+    "registration": {
+      "total": 100,
+      "correct": 100
+    },
+    "revocation_access": {
+      "total": 2500,
+      "correct": 2500
+    },
+    "revoke": {
+      "total": 2000,
+      "correct": 2000
+    },
+    "trace": {
+      "total": 100,
+      "correct": 100
+    }
+  },
+  "timings": {
+    "bilateral.transformMs": {
+      "n": 52,
+      "mean": 41.95668507692308,
+      "median": 1.469729,
+      "p95": 191.059916,
+      "max": 378.633625
+    },
+    "bilateral.decryptMs": {
+      "n": 13,
+      "mean": 1.0868557692307692,
+      "median": 0.989667,
+      "p95": 2.5605,
+      "max": 2.5605
+    },
+    "bilateral.wallMs": {
+      "n": 52,
+      "mean": 83.39768760085393,
+      "median": 40.43106269091368,
+      "p95": 242.7911669947207,
+      "max": 437.2240826487541
+    },
+    "continuous.encryptMs": {
+      "n": 1361,
+      "mean": 995.2671390191036,
+      "median": 1025.122375,
+      "p95": 1642.3935,
+      "max": 1812.6605
+    },
+    "continuous.transformMs": {
+      "n": 1361,
+      "mean": 148.90014788905216,
+      "median": 140.968042,
+      "p95": 251.717041,
+      "max": 453.730708
+    },
+    "continuous.decryptMs": {
+      "n": 1361,
+      "mean": 1.1826808420279207,
+      "median": 0.863542,
+      "p95": 2.368917,
+      "max": 71.957125
+    },
+    "continuous.wallMs": {
+      "n": 1361,
+      "mean": 179.6355526158716,
+      "median": 174.53850014135242,
+      "p95": 281.84395795688033,
+      "max": 500.9108753874898
+    },
+    "pipeline.wallMs": {
+      "n": 1361,
+      "mean": 1393.489451783324,
+      "median": 1386.3205830566585,
+      "p95": 2171.6203331016004,
+      "max": 2819.9205421842635
+    },
+    "policy.transformMs": {
+      "n": 500,
+      "mean": 69.279062772,
+      "median": 36.255104,
+      "p95": 209.478292,
+      "max": 294.633792
+    },
+    "policy.decryptMs": {
+      "n": 250,
+      "mean": 0.63999332,
+      "median": 0.5383125,
+      "p95": 1.305916,
+      "max": 3.556417
+    },
+    "policy.wallMs": {
+      "n": 500,
+      "mean": 86.23927442356944,
+      "median": 63.821770483627915,
+      "p95": 251.1713751591742,
+      "max": 315.53487526252866
+    },
+    "registration.keygenMs": {
+      "n": 100,
+      "mean": 2193.09908042,
+      "median": 2186.2988955,
+      "p95": 2242.626041,
+      "max": 2446.620709
+    },
+    "registration.registrationMs": {
+      "n": 100,
+      "mean": 4502.13131133,
+      "median": 3497.7949165,
+      "p95": 6798.703834,
+      "max": 60314.348292
+    },
+    "registration.wallMs": {
+      "n": 100,
+      "mean": 7771.13081254065,
+      "median": 6780.763146001846,
+      "p95": 10030.16058402136,
+      "max": 63581.24912530184
+    },
+    "revocation_access.transformMs": {
+      "n": 2500,
+      "mean": 148.1737289868,
+      "median": 137.320229,
+      "p95": 254.526625,
+      "max": 569.428459
+    },
+    "revocation_access.decryptMs": {
+      "n": 2500,
+      "mean": 0.7350371528,
+      "median": 0.5373755,
+      "p95": 1.630667,
+      "max": 8.19175
+    },
+    "revocation_access.wallMs": {
+      "n": 2500,
+      "mean": 167.2251294070855,
+      "median": 156.6656872164458,
+      "p95": 278.5061248578131,
+      "max": 597.9395839385688
+    },
+    "revoke.wallMs": {
+      "n": 2000,
+      "mean": 1372.6607999033295,
+      "median": 1443.729625083506,
+      "p95": 1634.213666897267,
+      "max": 4377.854750026017
+    },
+    "trace.traceMs": {
+      "n": 100,
+      "mean": 428.62518838,
+      "median": 427.87904149999997,
+      "p95": 441.611458,
+      "max": 631.682583
+    },
+    "trace.wallMs": {
+      "n": 100,
+      "mean": 436.92070795223117,
+      "median": 435.2341874036938,
+      "p95": 448.56854202225804,
+      "max": 645.6211660988629
+    }
+  },
+  "acceptanceEligible": true
+}

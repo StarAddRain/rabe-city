@@ -1,0 +1,79 @@
+{
+  "profile": "full",
+  "complete": false,
+  "fatal": "KeyboardInterrupt: ",
+  "elapsedSeconds": 1233.5291891098022,
+  "counts": {
+    "continuous": {
+      "total": 361,
+      "correct": 361
+    },
+    "pipeline": {
+      "total": 361,
+      "correct": 361
+    },
+    "registration": {
+      "total": 100,
+      "correct": 100
+    }
+  },
+  "timings": {
+    "continuous.encryptMs": {
+      "n": 361,
+      "mean": 989.3582812853185,
+      "median": 1000.31875,
+      "p95": 1636.419666,
+      "max": 1738.218417
+    },
+    "continuous.transformMs": {
+      "n": 361,
+      "mean": 145.66049331855956,
+      "median": 141.094583,
+      "p95": 250.492917,
+      "max": 307.300791
+    },
+    "continuous.decryptMs": {
+      "n": 361,
+      "mean": 1.2754225789473683,
+      "median": 0.793375,
+      "p95": 2.478458,
+      "max": 71.957125
+    },
+    "continuous.wallMs": {
+      "n": 361,
+      "mean": 171.19222020064777,
+      "median": 164.45970814675093,
+      "p95": 271.37037459760904,
+      "max": 374.1709999740124
+    },
+    "pipeline.wallMs": {
+      "n": 361,
+      "mean": 1225.3390730686301,
+      "median": 1227.110750041902,
+      "p95": 1922.206458169967,
+      "max": 2331.626624800265
+    },
+    "registration.keygenMs": {
+      "n": 100,
+      "mean": 2193.09908042,
+      "median": 2186.2988955,
+      "p95": 2242.626041,
+      "max": 2446.620709
+    },
+    "registration.registrationMs": {
+      "n": 100,
+      "mean": 4502.13131133,
+      "median": 3497.7949165,
+      "p95": 6798.703834,
+      "max": 60314.348292
+    },
+    "registration.wallMs": {
+      "n": 100,
+      "mean": 7771.13081254065,
+      "median": 6780.763146001846,
+      "p95": 10030.16058402136,
+      "max": 63581.24912530184
+    }
+  },
+  "acceptanceEligible": false
+}

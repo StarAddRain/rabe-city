@@ -1,0 +1,183 @@
+{
+  "profile": "smoke",
+  "complete": true,
+  "fatal": null,
+  "elapsedSeconds": 35.597512006759644,
+  "counts": {
+    "bilateral": {
+      "total": 4,
+      "correct": 4
+    },
+    "continuous": {
+      "total": 10,
+      "correct": 10
+    },
+    "pipeline": {
+      "total": 10,
+      "correct": 10
+    },
+    "policy": {
+      "total": 40,
+      "correct": 40
+    },
+    "registration": {
+      "total": 8,
+      "correct": 8
+    },
+    "revocation_access": {
+      "total": 2,
+      "correct": 2
+    },
+    "revoke": {
+      "total": 1,
+      "correct": 1
+    },
+    "trace": {
+      "total": 3,
+      "correct": 3
+    }
+  },
+  "timings": {
+    "bilateral.transformMs": {
+      "n": 4,
+      "mean": 17.636885250000002,
+      "median": 0.028832999999999998,
+      "p95": 70.472041,
+      "max": 70.472041
+    },
+    "bilateral.decryptMs": {
+      "n": 1,
+      "mean": 1.3665,
+      "median": 1.3665,
+      "p95": 1.3665,
+      "max": 1.3665
+    },
+    "bilateral.wallMs": {
+      "n": 4,
+      "mean": 35.872218664735556,
+      "median": 18.476728815585375,
+      "p95": 93.63649971783161,
+      "max": 93.63649971783161
+    },
+    "continuous.encryptMs": {
+      "n": 10,
+      "mean": 586.307246,
+      "median": 570.629271,
+      "p95": 923.574667,
+      "max": 923.574667
+    },
+    "continuous.transformMs": {
+      "n": 10,
+      "mean": 176.45153340000002,
+      "median": 164.845479,
+      "p95": 285.004,
+      "max": 285.004
+    },
+    "continuous.decryptMs": {
+      "n": 10,
+      "mean": 8.552904199999999,
+      "median": 2.0022915,
+      "p95": 66.040084,
+      "max": 66.040084
+    },
+    "continuous.wallMs": {
+      "n": 10,
+      "mean": 216.4552333764732,
+      "median": 200.1439374871552,
+      "p95": 326.58737525343895,
+      "max": 326.58737525343895
+    },
+    "pipeline.wallMs": {
+      "n": 10,
+      "mean": 832.25442096591,
+      "median": 778.4775416366756,
+      "p95": 1181.8039170466363,
+      "max": 1181.8039170466363
+    },
+    "policy.transformMs": {
+      "n": 40,
+      "mean": 72.4663374,
+      "median": 37.097875,
+      "p95": 212.908709,
+      "max": 241.636
+    },
+    "policy.decryptMs": {
+      "n": 20,
+      "mean": 2.0044481000000003,
+      "median": 1.0185835,
+      "p95": 4.682083,
+      "max": 13.721042
+    },
+    "policy.wallMs": {
+      "n": 40,
+      "mean": 90.47680308576673,
+      "median": 56.22749961912632,
+      "p95": 231.83654202148318,
+      "max": 264.28341725841165
+    },
+    "registration.keygenMs": {
+      "n": 8,
+      "mean": 193.676651125,
+      "median": 182.378667,
+      "p95": 261.580208,
+      "max": 261.580208
+    },
+    "registration.registrationMs": {
+      "n": 8,
+      "mean": 310.603182125,
+      "median": 208.4780205,
+      "p95": 980.178375,
+      "max": 980.178375
+    },
+    "registration.wallMs": {
+      "n": 8,
+      "mean": 1358.0529998871498,
+      "median": 1396.1884579621255,
+      "p95": 2145.415083039552,
+      "max": 2145.415083039552
+    },
+    "revocation_access.transformMs": {
+      "n": 2,
+      "mean": 72.29320799999999,
+      "median": 72.29320799999999,
+      "p95": 72.809541,
+      "max": 72.809541
+    },
+    "revocation_access.decryptMs": {
+      "n": 2,
+      "mean": 1.1840205,
+      "median": 1.1840205,
+      "p95": 1.409416,
+      "max": 1.409416
+    },
+    "revocation_access.wallMs": {
+      "n": 2,
+      "mean": 97.12264593690634,
+      "median": 97.12264593690634,
+      "p95": 97.75854181498289,
+      "max": 97.75854181498289
+    },
+    "revoke.wallMs": {
+      "n": 1,
+      "mean": 146.30775013938546,
+      "median": 146.30775013938546,
+      "p95": 146.30775013938546,
+      "max": 146.30775013938546
+    },
+    "trace.traceMs": {
+      "n": 3,
+      "mean": 68.803972,
+      "median": 60.991083,
+      "p95": 86.383875,
+      "max": 86.383875
+    },
+    "trace.wallMs": {
+      "n": 3,
+      "mean": 81.5008192633589,
+      "median": 76.74304209649563,
+      "p95": 101.71524994075298,
+      "max": 101.71524994075298
+    }
+  },
+  "acceptanceEligible": false
+}

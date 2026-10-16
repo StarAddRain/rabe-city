@@ -1,0 +1,6 @@
+{
+  "cpu": "Apple M5",
+  "memoryBytes": 17179869184,
+  "logicalCpus": 10,
+  "method": "sysctl machdep.cpu.brand_string hw.memsize hw.logicalcpu"
+}

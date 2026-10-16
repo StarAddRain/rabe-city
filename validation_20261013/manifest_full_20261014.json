@@ -1,0 +1,24 @@
+{
+  "status": "complete",
+  "acceptancePassed": true,
+  "date": "2026-10-14",
+  "files": {
+    "scripts/extend_revocation.py": "ecb744af214a986c555c7fb6e5c83d7073da072e2180c55edebf37a48df5d461",
+    "scripts/resume_acceptance.py": "a2e49a03747c6bd80adf3f439da49141d1aa831a31fe25268018420b221dc9c2",
+    "scripts/acceptance.py": "0be03e2607513b9a54617c1fafa202f99eb4e280a5b36ad7256bae20b83c4cd3",
+    "scripts/build_full_report.py": "89ec091b35bd3247fc52386c71b5e4aed01186c889c6825409f4bdfbcaefa840",
+    "scripts/build_report.py": "6ae21fc6539236d2b508a0e45f2532f1e151134912e497537135ca46bd181d02",
+    "scripts/estimate.py": "1f128e50709f713a40cca5a83b16d82d7f6d8323f804891462b177c7d6b57883",
+    "scripts/analyze.py": "16f2b6650c2519784d857702b66b9a66f8a0573dd8b2202e2cb95a2bb8d317b5",
+    "results/resumed-20261014/summary.json": "a5d68d8169c5598ee8d9762955d90a65c9e28f79d04729b79f27f06345d83162",
+    "results/resumed-20261014/revocation_targets.json": "b4c4fa98f9a4b12bd74b938d0e5bc11225914c2f7e28bf76ad9dce67dd9d3558",
+    "results/resumed-20261014/policies.json": "37fd085c2b95886a06529dc084b3c2dbf510a226c16adb3f40b8d71c83774d2c",
+    "results/resumed-20261014/groups.json": "1e24e3ef9ba37ff15b275fd944f26d95cb2585db04ca30d50bf0ee0291501148",
+    "results/resumed-20261014/progress.json": "0835d792bdcfa5a9aa1c4025ae6b3158fe640c9613d572a9af2d59250ca15d9e",
+    "results/resumed-20261014/analysis.json": "326d2ed3b319c6da77b2510100507f680b7dbd80cc3146bd0f76b68973819b32",
+    "results/resumed-20261014/environment.json": "e87e26cd4987e015bec0804879fa2ddb7abffed6f8892445a518f0de739a9e9c",
+    "results/resumed-20261014/records.jsonl": "9eb9be26198bf4e414b01f9110774cb1cc0c4b637efb4b4bb0a19db1dad79146",
+    "document/作品设计报告_第三部分_完整实测版.docx": "8e2d6f860b418115480adf1e6356dc76dc1353067843a14d35e35d9a73a091cc",
+    "README.md": "a69e4710a22320d1488ad04f8189c2a24040b6dad20109c58c6bd24fed0f0f45"
+  }
+}

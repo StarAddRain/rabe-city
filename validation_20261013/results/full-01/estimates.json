@@ -1,0 +1,105 @@
+{
+  "label": "ESTIMATE_NOT_MEASURED",
+  "method": "Stratified linear projection: 100 trials per policy × that policy observed mean end-to-end latency.",
+  "assumptions": [
+    "Same hardware, parameters, payload and concurrency=1.",
+    "Per-policy latency remains stationary.",
+    "No additional failures, queueing, network degradation or persistent-state growth effects."
+  ],
+  "perPolicy": [
+    {
+      "policy": "P01",
+      "observed": 37,
+      "observedMeanMs": 495.7141835443877,
+      "targetTrials": 100,
+      "estimatedTotalMs": 49571.41835443877,
+      "remainingTrials": 63,
+      "estimatedRemainingMs": 31229.993563296426
+    },
+    {
+      "policy": "P02",
+      "observed": 36,
+      "observedMeanMs": 638.7028576702708,
+      "targetTrials": 100,
+      "estimatedTotalMs": 63870.285767027075,
+      "remainingTrials": 64,
+      "estimatedRemainingMs": 40876.98289089733
+    },
+    {
+      "policy": "P03",
+      "observed": 36,
+      "observedMeanMs": 818.423452683621,
+      "targetTrials": 100,
+      "estimatedTotalMs": 81842.3452683621,
+      "remainingTrials": 64,
+      "estimatedRemainingMs": 52379.100971751745
+    },
+    {
+      "policy": "P04",
+      "observed": 36,
+      "observedMeanMs": 963.5004745666972,
+      "targetTrials": 100,
+      "estimatedTotalMs": 96350.04745666972,
+      "remainingTrials": 64,
+      "estimatedRemainingMs": 61664.03037226862
+    },
+    {
+      "policy": "P05",
+      "observed": 36,
+      "observedMeanMs": 1174.2641400519965,
+      "targetTrials": 100,
+      "estimatedTotalMs": 117426.41400519965,
+      "remainingTrials": 64,
+      "estimatedRemainingMs": 75152.90496332778
+    },
+    {
+      "policy": "P06",
+      "observed": 36,
+      "observedMeanMs": 1291.2326815486367,
+      "targetTrials": 100,
+      "estimatedTotalMs": 129123.26815486368,
+      "remainingTrials": 64,
+      "estimatedRemainingMs": 82638.89161911275
+    },
+    {
+      "policy": "P07",
+      "observed": 36,
+      "observedMeanMs": 1510.9920509081956,
+      "targetTrials": 100,
+      "estimatedTotalMs": 151099.20509081957,
+      "remainingTrials": 64,
+      "estimatedRemainingMs": 96703.49125812452
+    },
+    {
+      "policy": "P08",
+      "observed": 36,
+      "observedMeanMs": 1606.698060253014,
+      "targetTrials": 100,
+      "estimatedTotalMs": 160669.8060253014,
+      "remainingTrials": 64,
+      "estimatedRemainingMs": 102828.6758561929
+    },
+    {
+      "policy": "P09",
+      "observed": 36,
+      "observedMeanMs": 1871.3996840718512,
+      "targetTrials": 100,
+      "estimatedTotalMs": 187139.9684071851,
+      "remainingTrials": 64,
+      "estimatedRemainingMs": 119769.57978059848
+    },
+    {
+      "policy": "P10",
+      "observed": 36,
+      "observedMeanMs": 1902.730503429969,
+      "targetTrials": 100,
+      "estimatedTotalMs": 190273.0503429969,
+      "remainingTrials": 64,
+      "estimatedRemainingMs": 121774.75221951802
+    }
+  ],
+  "estimated1000PipelineSeconds": 1227.365808872864,
+  "estimatedRemainingPipelineSeconds": 785.0184034950887,
+  "unmeasuredFunctionalRates": null,
+  "warning": "Runtime projection does not predict success, denial, bilateral authentication or tracing rates."
+}

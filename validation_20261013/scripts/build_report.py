@@ -1,0 +1,128 @@
+#!/usr/bin/env python3
+"""Patch only chapter 3 in the provided template; all other ZIP parts stay byte-identical."""
+import argparse, copy, hashlib, json, pathlib, zipfile
+from lxml import etree as E
+P=argparse.ArgumentParser();P.add_argument('--run',default='full-01');a=P.parse_args()
+BASE=pathlib.Path(__file__).resolve().parents[1];R=BASE/'results'/a.run
+REF=pathlib.Path('/Users/starain/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_70eu39w9moe712_f3b5/temp/drag/附件二---作品设计报告（模板）.docx')
+OUT=BASE/'document/作品设计报告_第三部分_阶段实测与预估版.docx'
+A=json.loads((R/'analysis.json').read_text());assert A['profile']=='full' and A['metrics']['pipeline']['denominator']==361,'This report describes the preserved 361-trial interim run'
+ENV=json.loads((R/'environment.json').read_text());M=A.get('metrics',{});T=A.get('timings',{});POL=json.loads((R/'policies.json').read_text())
+W='http://schemas.openxmlformats.org/wordprocessingml/2006/main';ns={'w':W}
+def q(n):return '{'+W+'}'+n
+def x(n,**attrs):return E.Element(q(n),{q(k):str(v) for k,v in attrs.items()})
+def p(text,level=0,center=False,bold=False):
+ e=x('p');pr=x('pPr');e.append(pr)
+ if level:pr.append(x('pStyle',val='2' if level==1 else '3'))
+ if level or bold:pr.append(x('keepNext'))
+ pr.append(x('widowControl'));pr.append(x('snapToGrid',val='0'))
+ pr.append(x('spacing',before=180 if level else 0,after=100 if level else 90,line=360,lineRule='auto'))
+ pr.append(x('ind',firstLine=0 if level or center or bold else 480))
+ if center:pr.append(x('jc',val='center'))
+ r=x('r');rp=x('rPr');r.append(rp)
+ rp.append(x('rFonts',ascii='Times New Roman',hAnsi='Times New Roman',eastAsia='黑体' if level else '宋体'))
+ rp.append(x('sz',val=30 if level==1 else 28 if level==2 else 24));rp.append(x('color',val='000000'))
+ if level or bold:rp.append(x('b'))
+ t=x('t');t.set('{http://www.w3.org/XML/1998/namespace}space','preserve');t.text=text;r.append(t);e.append(r);return e
+nodes=[]
+def para(text,**kw):nodes.append(p(text,**kw))
+def head(text):para(text,level=2)
+def sub(text):para(text,bold=True)
+def table(title,headers,rows,widths):
+ caption=p(title,center=True);caption.find(q('pPr')).append(x('keepNext'));nodes.append(caption)
+ t=x('tbl');pr=x('tblPr');t.append(pr);pr.append(x('tblW',w=9640,type='dxa'));pr.append(x('tblLayout',type='fixed'))
+ borders=x('tblBorders')
+ for side in ['top','left','bottom','right','insideH','insideV']:borders.append(x(side,val='single',sz=4,color='D9D9D9'))
+ pr.append(borders);grid=x('tblGrid');t.append(grid)
+ ww=[int(9640*v/sum(widths)) for v in widths]
+ for v in ww:grid.append(x('gridCol',w=v))
+ for ri,row in enumerate([headers]+rows):
+  tr=x('tr');rp=x('trPr');rp.append(x('cantSplit'))
+  if ri==0:rp.append(x('tblHeader'))
+  tr.append(rp)
+  for j,txt in enumerate(row):
+   c=x('tc');cp=x('tcPr');cp.append(x('tcW',w=ww[j],type='dxa'));cp.append(x('vAlign',val='center'))
+   mar=x('tcMar')
+   for side in ['top','left','bottom','right']:mar.append(x(side,w=80,type='dxa'))
+   cp.append(mar)
+   if ri==0:cp.append(x('shd',fill='E7E6E6',val='clear'))
+   c.append(cp);pp=p(str(txt),center=(j==0 or len(str(txt))<16),bold=ri==0)
+   pp.find(q('pPr')).find(q('spacing')).set(q('line'),'280');pp.find(q('pPr')).find(q('spacing')).set(q('after'),'0')
+   
+   if ri<3 or ri==len(rows)-1:pp.find(q('pPr')).append(x('keepNext'))
+   pp.find(q('pPr')).find(q('ind')).set(q('firstLine'),'0');pp.find('.//'+q('sz')).set(q('val'),'21')
+   c.append(pp);tr.append(c)
+  t.append(tr)
+ nodes.append(t)
+def fmt_metric(key):
+ v=M.get(key)
+ return '待回填' if not v else f"{v['numerator']}/{v['denominator']}（{v['percent']:.2f}%）"
+def ms(key,field):return '待回填' if key not in T else f"{T[key][field]:.2f}"
+para('3.系统测试与结果',level=1)
+para('本章采用“阶段实测、性能预估、待验证项目”分列的方法，对系统的数据共享、双向属性验证、撤销及泄露密钥追踪进行评价。100辆模拟车辆已完成真实注册，在10种策略下连续完成361次加密—云端转换—本地解密，观察到361次正确恢复。随后按测试安排停止运行，尚未完成1000次连续链路及其后的完整功能验收，因此本章不作全部指标达标结论。')
+head('3.1 测试方案')
+sub('3.1.1 实验环境与参数')
+para('测试日期为2026年10月13日。实验主机为Apple M5（10个逻辑核心）、16 GiB内存，软件环境为macOS 26.4.1 ARM64、OpenJDK 1.8.0_492及JPBC 2.0.0。数据拥有者A、云服务器B、数据用户C及Key Curator D分别运行于四个独立Java进程，各进程最大堆内存为2 GiB，通过本机回环HTTP通信。系统使用项目现有Type A配对参数和AES-GCM数据封装。本结果对应单机四进程环境，不代表车载终端或跨主机网络实测。')
+para('规模测试在独立目录中设置128个注册槽位、50个属性A1—A50，实际注册100辆车辆；32槽位演示环境保持原状。测试复用兼容的公共参数缓存，重新生成全部实验车辆私钥并完成真实注册，不导入演示注册记录。Setup缓存加载耗时不计入KeyGen及链路时延，亦不据本实验评价冷启动初始化性能。')
+para('100辆车辆分为四组，每组25辆：A端完整属性组、A端缺失A1组、C端完整属性组、C端缺失A1组。完整组具有A1—A50，缺失组具有A2—A50。注册遵循D端授权、A/C本机KeyGen、D端公钥校验及分层RegPK流程。本文将具有接收角色的C端车辆作为恢复测试对象，不能将100个注册身份等同于100个接收端并发请求。')
+sub('3.1.2 策略设计与执行顺序')
+para('构造10种访问策略，分别覆盖5、10、15、20、25、30、35、40、45、50个不同属性及对应访问矩阵行。定义C(m)=A1 ∧ A2 ∧ … ∧ Am；对于偶数m，定义G(m)=A1 ∧ (A2 ∨ A3) ∧ (A4 ∨ A5) ∧ … ∧ Am。每个属性仅出现一次，所有策略均以A1为必要条件，从而便于构造明确的合法与非法属性集合。策略设计同时覆盖全合取和AND/OR混合结构，但不代表穷举全部访问结构。')
+table('表3-1 策略覆盖及已完成连续链路样本',['策略','属性数／矩阵行数','策略结构','已完成／计划'],[[r['id'],str(r['rows']),'C(%d)'%r['rows'] if r['structure']=='AND' else 'G(%d)'%r['rows'],str(r['completed'])+'/100'] for r in A['perPolicy']],[1,2,2,2])
+para('原定实验顺序为：100辆注册；10种策略交错执行1000次连续合法链路；500次合法／非法接收判定；52组双向组合；100轮独立撤销；100组有效泄露样本追踪。连续链路每次使用带唯一序号的1024字节明文并重新加密，不重复利用已有密文替代新加密，失败也不通过重试覆盖。当前停止点位于第361次链路完成之后，其余项目保留为后续验收方案。')
+sub('3.1.3 判定与统计方法')
+para('正确恢复要求本地解密成功、AES-GCM验证通过，且恢复明文与输入逐字节一致；HTTP请求成功或云端转换完成不能单独作为恢复成功依据。正确执行率为正确链路数除以已完成链路数；验收还要求样本总量不少于1000。合法恢复率、非法恢复率、撤销拒绝率及追踪识别率使用各自独立的分母。网络错误、超时及未知异常不计为正确拒绝，尚未执行项目的成功率记为“待验证”，不填0%或100%。')
+para('本次在完成361次链路后主动中止，记录保留中断状态，中断时未完成的请求不计作完整样本，不将余下639次算作成功或失败。361/361仅表示当前样本内的观察正确率为100%，既不足以满足1000次规模要求，也不能单独证明长期执行正确率不低于99.9%。')
+head('3.2 功能测试')
+sub('3.2.1 已完成的规模注册与连续数据共享')
+para('100辆车辆均成功完成密钥生成和注册。连续数据共享阶段共获得361条完整链路记录，恢复明文全部与原文一致，未观察到链路错误。P01完成37次，其余9种策略各完成36次；所有策略均有真实加密、转换及本地解密样本。该阶段只发送双方满足策略的合法请求，不能据此推断非法车辆恢复率为0%。')
+sub('3.2.2 双向属性验证方案与待验证结果')
+para('后续双向验证拟设置四类不同发送／接收身份组合，各13组，共52组。发送方属性需满足接收方验证策略，接收方属性需满足发送策略；只有双方条件同时满足才应恢复数据。双方均不满足时，允许系统在任一先执行的校验处拒绝。表3-2为预期访问决策，并非本次100辆环境下已测得的通过率。')
+table('表3-2 双向属性验证设计（规模实验尚未执行）',['发送方满足','接收方满足','计划组数','预期决策','实测状态'],[['是','是','13','恢复原明文','待验证'],['是','否','13','拒绝','待验证'],['否','是','13','拒绝','待验证'],['否','否','13','拒绝','待验证']],[1.5,1.5,1,2,1.5])
+para('另拟对每种策略遍历50辆C端车辆，形成250次合法与250次非法恢复判定，以检验满足策略恢复率100%、不满足策略恢复率0%的目标。该批测试尚未执行；当前不能以合法链路全通过替代非法属性拒绝试验。')
+sub('3.2.3 撤销与密钥追踪方案')
+para('撤销拟采用100轮独立实验：在100辆已注册背景下，每轮从25辆满足策略的C端车辆随机选取20辆，对一条新密文依次完成20次目标更新，再检验20辆撤销车辆和5辆保留权限车辆。合计计划2000次目标更新、2000次撤销拒绝判定及500次未撤销恢复判定。每轮目标不重复，轮间允许重复。完整规模实验尚未执行，100%拒绝与100%合法恢复均为待检验指标。')
+para('追踪拟从50辆C端车辆产生100组有效密钥副本，每辆2组；按场景标签划分为复制34组、泄露33组、非法共享33组，交替通过B端和D端触发Trace。正确识别以返回车辆编号与真实来源编号一致为准。当前接口接受有效私钥标量的白盒副本，三种标签的密码学输入形式相同，不代表三种不同攻击算法，也不涵盖黑盒盗版解密器或多用户合谋。100组规模追踪尚未执行。')
+sub('3.2.4 小规模预检证据')
+para('正式规模运行前，已完成8辆车辆的独立脚本预检，目的在于检查测试流程及判定逻辑。预检与100辆规模运行使用不同实验目录，不能合并样本后宣称满足规模验收。其真实结果见表3-3，仅说明所列小样本用例得到预期结果。')
+table('表3-3 8辆环境的预检结果（不作为规模验收）',['项目','观察结果','范围说明'],[['注册','8/8成功','8辆独立实验身份'],['连续合法链路','10/10正确','10种策略各1次'],['策略接收判定','40/40符合预期','20次合法恢复，20次非法拒绝'],['双向组合','4/4符合预期','四类组合各1组'],['撤销','1次更新成功','1次撤销拒绝，1次未撤销恢复'],['有效密钥追踪','3/3识别正确','3个有效副本样本']],[1.8,2.2,3.4])
+head('3.3 性能测试')
+sub('3.3.1 计时范围')
+para('KeyGen、注册、加密、转换及本地解密采用后端纳秒时钟差值换算为毫秒，完整链路另由驱动脚本使用单调时钟测量。KeyGen覆盖各层密钥生成与序列化；注册覆盖公钥校验及触发的满层聚合；加密包含AES-GCM封装、各已启用层的密文及发送证明构造；转换包含双向策略判定和密码运算；本地解密包含明文恢复与完整性校验。阶段计时不包含全部网络、JSON处理与持久化成本，不能将其和等同于端到端时延。')
+para('负载并发度为1，策略交错运行，保留首批有效样本，不删除热身样本或离群峰值。统计给出样本数、均值、中位数、P95及最大值；P95为排序后第ceil(0.95n)个观察值。下列数据均来自100辆环境已经完成的100次注册及361条合法链路，缺失项目不以零值补齐。')
+keys=[('密钥生成','registration.keygenMs'),('车辆注册','registration.registrationMs'),('加密','continuous.encryptMs'),('云端转换','continuous.transformMs'),('本地解密','continuous.decryptMs'),('完整链路','pipeline.wallMs')]
+table('表3-4 已完成样本的阶段耗时（实测，单位：ms）',['阶段','样本数','均值','中位数','P95','最大值'],[[label,str(T[k]['n'])]+[ms(k,f) for f in ['mean','median','p95','max']] for label,k in keys],[1.6,1,1.3,1.3,1.3,1.3])
+para(f"完整链路平均耗时为{ms('pipeline.wallMs','mean')} ms，P95为{ms('pipeline.wallMs','p95')} ms。注册平均耗时为{ms('registration.registrationMs','mean')} ms，最大值为{ms('registration.registrationMs','max')} ms，反映分层满块聚合带来的峰值；加密是当前合法链路中的主要阶段开销。本地解密平均耗时较低，但这不包括此前的云端转换和辅助项获取。")
+table('表3-5 不同策略下的平均阶段耗时（实测，单位：ms）',['策略','矩阵行数','样本数','加密','云端转换','本地解密'],[[r['id'],str(r['rows']),str(r['completed'])]+[f"{r[f]:.2f}" for f in ['encryptMs','transformMs','decryptMs']] for r in A['perPolicy']],[1,1.3,1,1.7,1.7,1.7])
+para('表3-5同时改变了矩阵规模与AND/OR结构，不宜把全部差异归因于行数。性能结论限定于本机、当前参数和单请求流，不能外推为100辆同时请求的并发吞吐能力。')
+sub('3.3.2 未完成链路的性能预估')
+EST=json.loads((R/'estimates.json').read_text())
+para('仅对耗时进行外推，不估计未执行请求的成功率。对策略j，令其已完成样本的平均端到端耗时为t̄j，则计划1000次链路的估算时间为T̂=Σ(j=1…10)100t̄j。该分层估计使每种策略权重一致，避免P01多1个样本带来的轻微权重偏差；剩余时间按各策略尚缺样本数乘其已测均值求和。')
+table('表3-6 线性外推结果（估算值，不是实测）',['估算项目','数值','适用条件'],[['1000次链路总耗时',f"约{EST['estimated1000PipelineSeconds']/60:.2f}分钟",'同机、同策略分布、并发度1'],['剩余639次链路耗时',f"约{EST['estimatedRemainingPipelineSeconds']/60:.2f}分钟",'各策略平均时延保持稳定']],[2.4,1.8,3.4])
+para('上述估算不含已完成的注册准备，也不含后续双向验证、撤销和追踪时间；未计入额外故障、排队、网络退化及持久化状态增长的影响。它不是置信区间或完成时间保证，更不能用于推断639次未执行链路全部成功。未观测功能指标仅保留设计预期，不填写虚构百分比。')
+head('3.4 测试数据与结果')
+sub('3.4.1 阶段结论与待验收项')
+table('表3-7 验收目标与当前证据',['验收项目','目标','当前实测及判断'],[['注册规模','≥100辆','100/100成功，规模已达到'],['策略覆盖','≥10种，5—50行','10种均有实测样本，已覆盖'],['连续正确执行','≥1000次，≥99.9%','361/361正确；次数不足，未完成验收'],['合法／非法恢复','分别100%／0%','合法链路361次均恢复；500次分类检验未执行'],['双向属性验证','≥50组，合法通过100%','52组规模测试待验证'],['撤销','≥100轮，每轮≥20辆','规模实验待验证'],['有效泄露密钥追踪','≥100组，识别100%','100组规模实验待验证']],[2,2.5,3.5])
+para('已完成结果支持以下阶段性判断：100辆注册流程能够运行，5—50行的10种策略均可完成实际加密、转换和解密，361条合法链路未出现错误。现有证据不足以确认完整验收通过，尤其不能确认非法恢复率、规模双向验证、撤销拒绝率及100组追踪识别率。小规模预检结果为后续实验提供流程依据，不替代所要求的样本量。')
+sub('3.4.2 证据与复现')
+para('项目validation_20261013目录保存测试脚本、原始结果和报告。results/full-01/records.jsonl含100次注册及361条链路的逐条记录，analysis.json保存实测统计，estimates.json单独保存外推方法与估算值；policies.json、groups.json及environment.json记录策略、分组与环境。summary.json明确记载中途停止，不能将complete=false解释为完整运行成功。results/smoke-01为单独的小规模预检证据。')
+para('主实验原始记录SHA-256摘要如下：')
+para(A['evidenceSha256'],center=True)
+para('scripts/acceptance.py用于新的完整实验，scripts/extend_revocation.py用于补足独立撤销轮数，scripts/analyze.py重算观察指标，scripts/estimate.py只外推时间。复测应使用新的运行编号保留本次中止记录。实验私钥与节点令牌保存在受限子目录，报告附件以代码、去标识结果及汇总为主。')
+sub('3.4.3 密码学安全边界')
+para('本章评价实现行为与阶段性能，不构成形式化安全证明。项目安全分析已记录发送方认证等式存在代数可塑性问题；正常身份与属性组合测试不能排除无认证私钥的主动冒充。因此，即使后续双向功能用例全部通过，也不能进一步声称抵抗任意发送方伪造，仍需协议修订和独立安全论证。')
+para('撤销方案仅评价指定密文的当前更新版本，不保证收回已获取的明文，也不保证旧密文、旧辅助项及旧私钥组合自动失效。追踪方案仅评价有效白盒标量副本，不涵盖黑盒或合谋攻击。本次未据项目既有配对参数认定任何标准安全强度或密码合规等级。以上边界应与功能指标共同陈述，避免把工程样本通过率扩大为密码学安全结论。')
+with zipfile.ZipFile(REF) as z:
+ xml=E.fromstring(z.read('word/document.xml'));body=xml.find(q('body'));children=list(body)
+ def text(e):return ''.join(e.itertext()) if False else ''.join(e.xpath('.//w:t/text()',namespaces=ns))
+ start=next(i for i,e in enumerate(children) if text(e)=='3.系统测试与结果')
+ end=next(i for i,e in enumerate(children) if text(e)=='4.应用前景')
+ for child in children[start:end]:body.remove(child)
+ for i,node in enumerate(nodes):body.insert(start+i,node)
+ OUT.parent.mkdir(exist_ok=True,parents=True)
+ with zipfile.ZipFile(OUT,'w',zipfile.ZIP_DEFLATED) as out:
+  for info in z.infolist():out.writestr(copy.copy(info),E.tostring(xml,xml_declaration=True,encoding='UTF-8',standalone=True) if info.filename=='word/document.xml' else z.read(info.filename))
+ with zipfile.ZipFile(OUT) as out:
+  assert all(z.read(name)==out.read(name) for name in z.namelist() if name!='word/document.xml')
+text_content='\n\n'.join(''.join(e.xpath('.//w:t/text()',namespaces=ns)) for e in nodes)
+(OUT.parent/(OUT.stem+'.txt')).write_text(text_content,encoding='utf-8')
+print(OUT)
